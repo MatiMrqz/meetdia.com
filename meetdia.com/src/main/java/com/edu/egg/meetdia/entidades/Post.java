@@ -1,6 +1,6 @@
-package com.edu.egg.entidades;
+package com.edu.egg.meetdia.entidades;
 
-import com.edu.egg.enumeraciones.Categoria;
+import com.edu.egg.meetdia.com.enumeraciones.Categoria;
 import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
