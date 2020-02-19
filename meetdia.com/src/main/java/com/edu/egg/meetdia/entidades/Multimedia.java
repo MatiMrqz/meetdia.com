@@ -21,12 +21,25 @@ public class Multimedia {
 	private String id;
 	private String nombre;
 	private String mime;
+	@Lob @Basic(fetch=FetchType.LAZY)
+	private byte[] contenidoMultimedia;
 	@Enumerated(EnumType.STRING)
 	private Tipo tipo;
 	
 	
 	
 	
+	
+	public byte[] getContenidoMultimedia() {
+		return contenidoMultimedia;
+	}
+
+
+	public void setContenidoMultimedia(byte[] contenidoMultimedia) {
+		this.contenidoMultimedia = contenidoMultimedia;
+	}
+
+
 	public String getId() {
 		return id;
 	}
