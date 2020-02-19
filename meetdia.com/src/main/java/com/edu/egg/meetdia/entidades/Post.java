@@ -1,13 +1,17 @@
 package com.edu.egg.meetdia.entidades;
 
 import com.edu.egg.meetdia.com.enumeraciones.Categoria;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.TreeSet;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
@@ -24,11 +28,31 @@ public class Post {
     @Temporal(TemporalType.DATE)
     private Date fecha_publicacion;
     
+    @OneToOne
+    private Multimedia multimedia;
+    
+    @OneToMany
+    private TreeSet<Mensaje> mensajes;
+    
     @ManyToOne
     private Persona persona;
     
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
+
+    public Post() {
+        mensajes = new TreeSet<>((Mensaje msj1, Mensaje msj2) -> {
+            if (msj1.getFecha().after(msj2.getFecha())) {
+                return 1;
+            }
+            else if (msj1.getFecha().before(msj2.getFecha())) {
+                return -1;
+            }
+            else{
+                return 0;
+            }
+        });
+    }
 
     public String getTitulo() {
         return titulo;
@@ -72,7 +96,5 @@ public class Post {
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
-    }
-    
-    
+    } 
 }
