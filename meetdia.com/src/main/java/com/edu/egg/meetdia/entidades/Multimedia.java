@@ -14,54 +14,80 @@ import com.edu.egg.meetdia.com.enumeraciones.*;
 
 public class Multimedia {
 	// ESTA CLASE ES PARA LOS ARCHIVOS MULTIMEDIA QUE VAN EN LOS POSTS
-
-	@Id
-	@GeneratedValue(generator = "uuid")
-	@GenericGenerator(name = "uuid", strategy = "uuid2")
+	
+	@Id   
+	@GeneratedValue (generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid2")  
 	private String id;
 	private String nombre;
 	private String mime;
-	@Lob
-	@Basic(fetch = FetchType.LAZY)
+	@Lob @Basic(fetch=FetchType.LAZY)
 	private byte[] contenidoMultimedia;
 	@Enumerated(EnumType.STRING)
 	private Tipo tipo;
-
+	
+	
+	
+	
+	
 	public byte[] getContenidoMultimedia() {
 		return contenidoMultimedia;
 	}
+
 
 	public void setContenidoMultimedia(byte[] contenidoMultimedia) {
 		this.contenidoMultimedia = contenidoMultimedia;
 	}
 
+
 	public String getId() {
 		return id;
 	}
+
 
 	public void setId(String id) {
 		this.id = id;
 	}
 
+
 	public Tipo getTipo() {
 		return tipo;
 	}
+
 
 	public void setTipo(Tipo tipo) {
 		this.tipo = tipo;
 	}
 
+
+	public byte[] getContenido() {
+		return contenido;
+	}
+
+
+	public void setContenido(byte[] contenido) {
+		this.contenido = contenido;
+	}
+
+
+	@Lob @Basic(fetch=FetchType.LAZY)
+	private byte[] contenido;
+
+
 	public String getNombre() {
 		return nombre;
 	}
+
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
+
 	public String getMime() {
 		return mime;
 	}
+
 
 	public void setMime(String mime) {
 		this.mime = mime;

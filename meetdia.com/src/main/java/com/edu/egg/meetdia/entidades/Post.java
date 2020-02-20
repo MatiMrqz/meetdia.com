@@ -40,6 +40,22 @@ public class Post {
     @Enumerated(EnumType.STRING)
     private Categoria categoria;
 
+    public Multimedia getMultimedia() {
+        return multimedia;
+    }
+
+    public void setMultimedia(Multimedia multimedia) {
+        this.multimedia = multimedia;
+    }
+
+    public TreeSet<Mensaje> getMensajes() {
+        return mensajes;
+    }
+
+    public void setMensajes(TreeSet<Mensaje> mensajes) {
+        this.mensajes = mensajes;
+    }
+
     public Post() {
         mensajes = new TreeSet<>((Mensaje msj1, Mensaje msj2) -> {
             if (msj1.getFecha().after(msj2.getFecha())) {
