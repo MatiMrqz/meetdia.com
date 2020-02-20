@@ -13,18 +13,38 @@ import javax.persistence.TemporalType;
 import org.hibernate.annotations.GenericGenerator;
 
 public class Mensaje {
-	// ESTA CLASE ES PARA ENVIAR CONTENIDO EN FORMA DE MENSAJE Y QUE EL USUARIO PUEDA RECIBIRLO O ENVIARLO
-	
-	@Id   
-	@GeneratedValue (generator = "uuid")
+	// ESTA CLASE ES PARA ENVIAR CONTENIDO EN FORMA DE MENSAJE Y QUE EL USUARIO
+	// PUEDA RECIBIRLO O ENVIARLO
+
+	@Id
+	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid2")
 	private String id;
-	
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha;
-	
-	@Lob @Basic(fetch=FetchType.LAZY)
-	private byte[] contenido;
+
+	private String contenido;
+
+	private Persona emisor;
+
+	private Persona receptor;
+
+	public Persona getEmisor() {
+		return emisor;
+	}
+
+	public void setEmisor(Persona emisor) {
+		this.emisor = emisor;
+	}
+
+	public Persona getReceptor() {
+		return receptor;
+	}
+
+	public void setReceptor(Persona receptor) {
+		this.receptor = receptor;
+	}
 
 	public String getId() {
 		return id;
@@ -42,22 +62,12 @@ public class Mensaje {
 		this.fecha = fecha;
 	}
 
-	public byte[] getContenido() {
+	public String getContenido() {
 		return contenido;
 	}
 
-	public void setContenido(byte[] contenido) {
+	public void setContenido(String contenido) {
 		this.contenido = contenido;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }
