@@ -6,9 +6,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.GenericGenerator;
-
 
 @Entity
 public class Persona {
@@ -16,127 +16,94 @@ public class Persona {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id; 
+    private String id;
     private String nombre;
     private String profesion;
     private String domicilio;
     private String codpostal;
     private String ciudad;
-    private String email; 
-    private String alias;
+    private String email;
+    private String nickname; //Cambiado porque alias es una palabra reservada de SQL
     private String clave;
     
-    private String mime;
-    @Lob @Basic(fetch = FetchType.LAZY)
-    private byte[] contenido;
+    @OneToOne
+    private Multimedia multimedia;
 
-	public Persona(String id, String nombre, String profesion, String domicilio, String codpostal, String ciudad,
-			String email, String alias, String clave, String mime, byte[] contenido) {
-	
-		this.id = id;
-		this.nombre = nombre;
-		this.profesion = profesion;
-		this.domicilio = domicilio;
-		this.codpostal = codpostal;
-		this.ciudad = ciudad;
-		this.email = email;
-		this.alias = alias;
-		this.clave = clave;
-		this.mime = mime;
-		this.contenido = contenido;
-	}
+    public Multimedia getMultimedia() {
+        return multimedia;
+    }
 
-	public Persona() {
-		
-	}
+    public void setMultimedia(Multimedia multimedia) {
+        this.multimedia = multimedia;
+    }
 
-	public String getId() {
-		return id;
-	}
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getNombre() {
-		return nombre;
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
-	public String getProfesion() {
-		return profesion;
-	}
+    public String getProfesion() {
+        return profesion;
+    }
 
-	public void setProfesion(String profesion) {
-		this.profesion = profesion;
-	}
+    public void setProfesion(String profesion) {
+        this.profesion = profesion;
+    }
 
-	public String getDomicilio() {
-		return domicilio;
-	}
+    public String getDomicilio() {
+        return domicilio;
+    }
 
-	public void setDomicilio(String domicilio) {
-		this.domicilio = domicilio;
-	}
+    public void setDomicilio(String domicilio) {
+        this.domicilio = domicilio;
+    }
 
-	public String getCodpostal() {
-		return codpostal;
-	}
+    public String getCodpostal() {
+        return codpostal;
+    }
 
-	public void setCodpostal(String codpostal) {
-		this.codpostal = codpostal;
-	}
+    public void setCodpostal(String codpostal) {
+        this.codpostal = codpostal;
+    }
 
-	public String getCiudad() {
-		return ciudad;
-	}
+    public String getCiudad() {
+        return ciudad;
+    }
 
-	public void setCiudad(String ciudad) {
-		this.ciudad = ciudad;
-	}
+    public void setCiudad(String ciudad) {
+        this.ciudad = ciudad;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public String getAlias() {
-		return alias;
-	}
+    public String getNickname() {
+        return nickname;
+    }
 
-	public void setAlias(String alias) {
-		this.alias = alias;
-	}
+    public void setNickname(String alias) {
+        this.nickname = alias;
+    }
 
-	public String getClave() {
-		return clave;
-	}
+    public String getClave() {
+        return clave;
+    }
 
-	public void setClave(String clave) {
-		this.clave = clave;
-	}
+    public void setClave(String clave) {
+        this.clave = clave;
+    }
 
-	public String getMime() {
-		return mime;
-	}
-
-	public void setMime(String mime) {
-		this.mime = mime;
-	}
-
-	public byte[] getContenido() {
-		return contenido;
-	}
-
-	public void setContenido(byte[] contenido) {
-		this.contenido = contenido;
-	}
-    
-    
 }

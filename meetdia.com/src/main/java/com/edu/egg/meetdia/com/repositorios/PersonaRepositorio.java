@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.edu.egg.meetdia.entidades.Persona;
+import java.util.Optional;
 
 
 @Repository
@@ -23,5 +24,8 @@ public interface PersonaRepositorio extends JpaRepository<Persona,String>{
 	 
 	 @Query("SELECT a FROM Persona a ORDER BY a.nombre ASC")
 	 public  List<Persona> buscarTodos();
+         
+         @Query("SELECT a FROM Persona a WHERE a.nickname :=nickname")
+         public Optional<Persona> buscarNickname (@Param("nickname") String nickname);
 	 
 }
