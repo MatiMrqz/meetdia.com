@@ -1,18 +1,21 @@
 package com.edu.egg.meetdia.com.servicios;
 
+import com.edu.egg.meetdia.com.entidades.Multimedia;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.edu.egg.meetdia.com.enumeraciones.Tipo;
+import com.edu.egg.meetdia.com.errores.ErrorServicio;
 import com.edu.egg.meetdia.com.repositorios.MultimediaRepositorio;
-import com.edu.egg.meetdia.entidades.Multimedia;
-import com.edu.egg.meetdia.errores.ErrorServicio;
+import org.springframework.stereotype.Service;
 
 
+@Service
 public class MultimediaServicio {
-	@Autowired
+	
+    @Autowired
 	private MultimediaRepositorio multimediaRepositorio;
 	
 	@Transactional  

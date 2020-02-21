@@ -1,4 +1,4 @@
-package com.edu.egg.meetdia.entidades;
+package com.edu.egg.meetdia.com.entidades;
 
 import javax.persistence.Basic;
 import javax.persistence.EnumType;
@@ -11,7 +11,9 @@ import javax.persistence.Lob;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.edu.egg.meetdia.com.enumeraciones.*;
+import javax.persistence.Entity;
 
+@Entity
 public class Multimedia {
 	// ESTA CLASE ES PARA LOS ARCHIVOS MULTIMEDIA QUE VAN EN LOS POSTS
 

@@ -1,45 +1,39 @@
 package com.edu.egg.meetdia.com.servicios;
 
+import com.edu.egg.meetdia.com.entidades.Mensaje;
+import com.edu.egg.meetdia.com.entidades.Persona;
+import com.edu.egg.meetdia.com.errores.ErrorServicio;
+import com.edu.egg.meetdia.com.repositorios.MensajeRepositorio;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import javax.transaction.Transactional;
 
-import org.apache.logging.log4j.message.SimpleMessage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import com.edu.egg.meetdia.com.repositorios.MensajeRepositorio;
-import com.edu.egg.meetdia.entidades.Mensaje;
-import com.edu.egg.meetdia.entidades.Persona;
-import com.edu.egg.meetdia.errores.ErrorServicio;
 
 @Service
 public class MensajeServicio {
+    
 	@Autowired
 	private MensajeRepositorio mensajeRepositorio;
 
 	@Transactional
 	public void crearMensaje(String id, String contenido, Persona emisor, Persona receptor) throws ErrorServicio {
-
 		if (contenido != null) {
 			throw new ErrorServicio("No se puede crear un mensaje vacio");
-
 		}
-
-		Mensaje mensaje = new Mensaje();
+                Mensaje mensaje = new Mensaje();
 
 		mensaje.setContenido(contenido);
 		mensaje.setFecha(new Date());
-		mensaje.setEmisor(emisor);
-		mensaje.setReceptor(receptor);
+                Persona emite = emisor;
+		mensaje.setEmisor(emite);
+                Persona recibe = receptor;
+		mensaje.setReceptor(recibe);
 
 		mensajeRepositorio.save(mensaje);
-
 	}
 	
 

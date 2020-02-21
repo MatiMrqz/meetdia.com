@@ -1,10 +1,10 @@
 package com.edu.egg.meetdia.com.servicios;
 
+import com.edu.egg.meetdia.com.entidades.Post;
 import com.edu.egg.meetdia.com.enumeraciones.Categoria;
+import com.edu.egg.meetdia.com.errores.ErrorServicio;
 import com.edu.egg.meetdia.com.repositorios.PersonaRepositorio;
 import com.edu.egg.meetdia.com.repositorios.PostRepositorio;
-import com.edu.egg.meetdia.entidades.Post;
-import com.edu.egg.meetdia.errores.ErrorServicio;
 import java.util.Date;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;

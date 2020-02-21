@@ -1,10 +1,10 @@
 package com.edu.egg.meetdia.com.repositorios;
 
+import com.edu.egg.meetdia.com.entidades.Multimedia;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import com.edu.egg.meetdia.entidades.Multimedia;
 
 @Repository
 public interface MultimediaRepositorio extends JpaRepository<Multimedia, String> {
@@ -18,7 +18,7 @@ public interface MultimediaRepositorio extends JpaRepository<Multimedia, String>
 	@Query("SELECT a FROM Multimedia a WHERE a.mime= :mime")
 	public Multimedia buscarMime(@Param("mime") String mime);
 
-	@Query("SELECT a FROM Multimedia a WHERE a.contenidoMultimedia= :contenidoMultimedia")
-	public Multimedia buscarcontenidoMultimedia(@Param("ContenidoMultimedia") Byte contenidoMultimedia);
+//	@Query("SELECT a FROM Multimedia a WHERE a.contenidoMultimedia= :contenidoMultimedia")
+//	public Multimedia buscarcontenidoMultimedia(@Param("ContenidoMultimedia") Byte contenidoMultimedia);
 
 }

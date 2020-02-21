@@ -1,4 +1,4 @@
-package com.edu.egg.meetdia.errores;
+package com.edu.egg.meetdia.com.errores;
 
 public class ErrorServicio extends Exception{
     

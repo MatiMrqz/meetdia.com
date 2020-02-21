@@ -1,17 +1,20 @@
 package com.edu.egg.meetdia.com.servicios;
 
+import com.edu.egg.meetdia.com.entidades.Persona;
+import com.edu.egg.meetdia.com.errores.ErrorServicio;
 import com.edu.egg.meetdia.com.repositorios.PersonaRepositorio;
-import com.edu.egg.meetdia.entidades.Persona;
-import com.edu.egg.meetdia.errores.ErrorServicio;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 @Service
-public class PersonaServicio {
+public class PersonaServicio implements UserDetailsService {
 
     @Autowired
     private PersonaRepositorio personaRepositorio;
@@ -104,9 +107,14 @@ public class PersonaServicio {
         if (!clave.equals(clave2)) {
             throw new ErrorServicio("Las claves deben coincidir");
         }
-        Optional<Persona> respuesta = personaRepositorio.buscarNickname(nickname);
-        if (respuesta.isPresent()) {
+        Persona personaporalias = personaRepositorio.buscarNickname(nickname);
+        if (personaporalias==null) {
             throw new ErrorServicio("El nickname ya esta siendo utilizado");
         }
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String string) throws UsernameNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

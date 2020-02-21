@@ -1,33 +1,32 @@
-package com.edu.egg.meetdia.entidades;
+package com.edu.egg.meetdia.com.entidades;
 
 import java.util.Date;
 
-import javax.persistence.Basic;
-import javax.persistence.FetchType;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.GenericGenerator;
 
+@Entity
 public class Mensaje {
-	// ESTA CLASE ES PARA ENVIAR CONTENIDO EN FORMA DE MENSAJE Y QUE EL USUARIO
-	// PUEDA RECIBIRLO O ENVIARLO
-
 	@Id
-	@GeneratedValue(generator = "uuid")
-	@GenericGenerator(name = "uuid", strategy = "uuid2")
+	@GeneratedValue(generator="uuid")
+	@GenericGenerator(name="uuid",strategy="uuid2")
 	private String id;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fecha;
 
 	private String contenido;
-
+        
+        @ManyToOne
 	private Persona emisor;
-
+        
+        @ManyToOne
 	private Persona receptor;
 
 	public Persona getEmisor() {

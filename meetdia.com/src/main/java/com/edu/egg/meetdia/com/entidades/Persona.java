@@ -1,4 +1,4 @@
-package com.edu.egg.meetdia.entidades;
+package com.edu.egg.meetdia.com.entidades;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
