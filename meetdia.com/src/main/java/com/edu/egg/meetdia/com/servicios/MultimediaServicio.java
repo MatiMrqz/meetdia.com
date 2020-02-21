@@ -25,7 +25,8 @@ public class MultimediaServicio {
 	                multimedia.setNombre(archivo.getName());
 	                multimedia.setContenidoMultimedia(archivo.getBytes());   
 	                multimedia.setTipo(tipoDeArchivo(archivo));
-	                return multimediaRepositorio.save(multimedia);
+	                multimediaRepositorio.save(multimedia);
+                        return multimedia;
 	                
 	            }catch(Exception e){
 	                System.out.println(e.getMessage());                            }

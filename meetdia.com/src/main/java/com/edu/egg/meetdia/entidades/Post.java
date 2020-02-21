@@ -1,16 +1,16 @@
 package com.edu.egg.meetdia.entidades;
 
 import com.edu.egg.meetdia.com.enumeraciones.Categoria;
-import java.util.Comparator;
+//import java.util.Comparator;
 import java.util.Date;
-import java.util.TreeSet;
+//import java.util.TreeSet;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+//import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -31,8 +31,8 @@ public class Post {
     @OneToOne
     private Multimedia multimedia;
     
-    @OneToMany
-    private TreeSet<Mensaje> mensajes;
+//    @OneToMany
+//    private TreeSet<Mensaje> mensajes;
     
     @ManyToOne
     private Persona persona;
@@ -48,27 +48,27 @@ public class Post {
         this.multimedia = multimedia;
     }
 
-    public TreeSet<Mensaje> getMensajes() {
-        return mensajes;
-    }
+//    public TreeSet<Mensaje> getMensajes() {
+//        return mensajes;
+//    }
+//
+//    public void setMensajes(TreeSet<Mensaje> mensajes) {
+//        this.mensajes = mensajes;
+//    }
 
-    public void setMensajes(TreeSet<Mensaje> mensajes) {
-        this.mensajes = mensajes;
-    }
-
-    public Post() {
-        mensajes = new TreeSet<>((Mensaje msj1, Mensaje msj2) -> {
-            if (msj1.getFecha().after(msj2.getFecha())) {
-                return 1;
-            }
-            else if (msj1.getFecha().before(msj2.getFecha())) {
-                return -1;
-            }
-            else{
-                return 0;
-            }
-        });
-    }
+//    public Post() {
+//        mensajes = new TreeSet<>((Mensaje msj1, Mensaje msj2) -> {
+//            if (msj1.getFecha().after(msj2.getFecha())) {
+//                return 1;
+//            }
+//            else if (msj1.getFecha().before(msj2.getFecha())) {
+//                return -1;
+//            }
+//            else{
+//                return 0;
+//            }
+//        });
+//    }
 
     public String getTitulo() {
         return titulo;
