@@ -13,14 +13,14 @@ spring:
     password: dpcdyxmiujgtrqxg
     
   datasource: 
-    url: jdbc:mysql://localhost:3306/meetdia?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-    username: root
-    password: root
+    url: jdbc:mysql://hxqrn1h0kcyrrgfl:x450lr0iq97rwtgc@i943okdfa47xqzpy.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/g9bjl3936n3w7x6z
+    username: hxqrn1h0kcyrrgfl
+    password: x450lr0iq97rwtgc
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: false
     hibernate:
-      ddl-auto: update    
+      ddl-auto: create    
   thymeleaf:
     cache: false 
 server:
