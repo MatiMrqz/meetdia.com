@@ -59,7 +59,7 @@ public class PersonaServicio implements UserDetailsService {
             mailMessage.setSubject("Completa tu Registro a meetdia.com!");
             mailMessage.setFrom("meetdia");
             mailMessage.setText("Para confirmar tu cuenta haz click aquí: "
-            +"http://localhost:8080/confirm-account?token="+confirmationToken.getConfirmationToken());
+            +"https://meetdia.herokuapp.com/confirm-account?token="+confirmationToken.getConfirmationToken());
 
             emailSenderService.sendEmail(mailMessage);
     }
