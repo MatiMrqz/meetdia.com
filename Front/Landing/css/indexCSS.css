@@ -1,0 +1,28 @@
+.navbarcolor{
+		background-color: #9ACD32;
+		background-size: 20px;
+}
+.letra{
+        font-family: "Century Gothic";
+        font-weight: bold;
+        color:#000;
+        align-content: center;
+        }
+
+.letra2{
+		font-weight: bold;
+		color:#000;
+		font-size:20px;
+}
+.bttcolor{
+		  background-color: #008B8B;
+
+}
+.ref{
+	 padding: 15px;
+	 color:#FFFF;
+	font-family: "Century Gothic";
+	font-size: 25px;
+	text-align:center;
+	display: inline-block;
+}
