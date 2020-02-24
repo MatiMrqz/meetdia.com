@@ -25,7 +25,21 @@ public class SeguridadConfiguracion extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-            http.httpBasic().disable().formLogin().disable();
+            System.out.println("=======================================================");
+		http.headers().frameOptions().sameOrigin().and()
+			.authorizeRequests()
+				.antMatchers("/css/*", "/js/*", "/login", "/registro","/confirm-account")
+				.permitAll()
+			.and().formLogin()
+				.loginPage("/login")
+					.loginProcessingUrl("/logincheck")
+					.usernameParameter("username")
+					.passwordParameter("password")
+					.defaultSuccessUrl("/inicio")
+					.permitAll()
+				.and().logout()
+					.logoutUrl("/logout")
+					.logoutSuccessUrl("/login?logout")
+					.permitAll().and().csrf().disable();
 	}
-
 }

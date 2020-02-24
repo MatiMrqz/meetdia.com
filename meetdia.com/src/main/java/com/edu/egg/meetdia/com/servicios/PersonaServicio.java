@@ -1,11 +1,14 @@
 package com.edu.egg.meetdia.com.servicios;
 
+import com.edu.egg.meetdia.com.entidades.ConfirmationToken;
 import com.edu.egg.meetdia.com.entidades.Persona;
 import com.edu.egg.meetdia.com.errores.ErrorServicio;
+import com.edu.egg.meetdia.com.repositorios.ConfirmationTokenRepositorio;
 import com.edu.egg.meetdia.com.repositorios.PersonaRepositorio;
 import java.util.Optional;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -22,22 +25,43 @@ public class PersonaServicio implements UserDetailsService {
     @Autowired
     private MultimediaServicio ms;
 
+    @Autowired
+    private EmailSenderService emailSenderService;
+    
+    @Autowired
+    private ConfirmationTokenRepositorio confirmationTokenRepositorio;
+    
     @Transactional
-    public void registrar(MultipartFile archivo, String nombre, String nickname, String profesion, String ciudad, String email, String clave) throws ErrorServicio {
-        validar(nombre, nickname, profesion, ciudad, email, clave, clave);
+    public void registrar(MultipartFile archivo, String nombre, String nickname, String profesion, String ciudad, String cp, String email, String clave1, String clave2) throws ErrorServicio {
+        validar(nombre, nickname, profesion, ciudad, email, clave1, clave2);
 
         Persona persona = new Persona();
         persona.setNombre(nombre);
         persona.setNickname(nickname);
         persona.setEmail(email);
         persona.setProfesion(profesion);
+        persona.setCodpostal(cp);
         persona.setCiudad(ciudad);
         persona.setMultimedia(ms.guardar(archivo));
+        persona.setIs_enabled(false);
 
-        String encriptada = new BCryptPasswordEncoder().encode(clave);
+        String encriptada = new BCryptPasswordEncoder().encode(clave1);
         persona.setClave(encriptada);
 
         personaRepositorio.save(persona);
+        
+        ConfirmationToken confirmationToken = new ConfirmationToken(persona);
+        
+        confirmationTokenRepositorio.save(confirmationToken);
+        
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+            mailMessage.setTo(persona.getEmail());
+            mailMessage.setSubject("Completa tu Registro a meetdia.com!");
+            mailMessage.setFrom("meetdia");
+            mailMessage.setText("Para confirmar tu cuenta haz click aquí: "
+            +"http://localhost:8080/confirm-account?token="+confirmationToken.getConfirmationToken());
+
+            emailSenderService.sendEmail(mailMessage);
     }
 
     @Transactional
@@ -98,6 +122,10 @@ public class PersonaServicio implements UserDetailsService {
         if (ciudad == null || ciudad.isEmpty()) {
             throw new ErrorServicio("La ciudad no puede ser nula");
         }
+        Persona personapormail = personaRepositorio.buscarPersonaporEmail(email);
+        if (personapormail != null){
+            throw new ErrorServicio("El E-Mail ya esta siendo utilizado");
+        }
         if (email == null || email.isEmpty()) {
             throw new ErrorServicio("El E-Mail no puede ser nulo");
         }
@@ -108,7 +136,7 @@ public class PersonaServicio implements UserDetailsService {
             throw new ErrorServicio("Las claves deben coincidir");
         }
         Persona personaporalias = personaRepositorio.buscarNickname(nickname);
-        if (personaporalias==null) {
+        if (personaporalias!=null) {
             throw new ErrorServicio("El nickname ya esta siendo utilizado");
         }
     }

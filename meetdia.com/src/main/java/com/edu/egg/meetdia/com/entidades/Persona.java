@@ -28,6 +28,8 @@ public class Persona {
     
     @OneToOne
     private Multimedia multimedia;
+    
+    private boolean is_enabled;
 
     public Multimedia getMultimedia() {
         return multimedia;
@@ -35,6 +37,14 @@ public class Persona {
 
     public void setMultimedia(Multimedia multimedia) {
         this.multimedia = multimedia;
+    }
+
+    public boolean isIs_enabled() {
+        return is_enabled;
+    }
+
+    public void setIs_enabled(boolean is_enabled) {
+        this.is_enabled = is_enabled;
     }
 
 

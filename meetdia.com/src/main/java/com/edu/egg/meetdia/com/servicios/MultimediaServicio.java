@@ -11,60 +11,59 @@ import com.edu.egg.meetdia.com.errores.ErrorServicio;
 import com.edu.egg.meetdia.com.repositorios.MultimediaRepositorio;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class MultimediaServicio {
-	
+
     @Autowired
-	private MultimediaRepositorio multimediaRepositorio;
+    private MultimediaRepositorio multimediaRepositorio;
+
+    @Transactional
+    public Multimedia guardar(MultipartFile archivo) throws ErrorServicio {
+
+        if (archivo != null) {
+            try {
+                System.out.println("Guardando archivo...");
+                Multimedia multimedia = new Multimedia();
+                multimedia.setMime(archivo.getContentType());
+                multimedia.setNombre(archivo.getName());
+                multimedia.setContenidoMultimedia(archivo.getBytes());
+                multimedia.setTipo(tipoDeArchivo(archivo));
+                multimediaRepositorio.save(multimedia);
+                return multimedia;
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+            System.out.println("No hubo multimedia");
+            return null;
+    }
 	
-	@Transactional  
-	 public Multimedia guardar(MultipartFile archivo)throws ErrorServicio{
-	     
-	        if(archivo!=null){
-	            try{
-	                Multimedia multimedia = new Multimedia();
-	                multimedia.setMime(archivo.getContentType());
-	                multimedia.setNombre(archivo.getName());
-	                multimedia.setContenidoMultimedia(archivo.getBytes());   
-	                multimedia.setTipo(tipoDeArchivo(archivo));
-	                multimediaRepositorio.save(multimedia);
-                        return multimedia;
-	                
-	            }catch(Exception e){
-	                System.out.println(e.getMessage());                            }
-	        }
-	        return null;
-	                 
-	  }
 	
-	private Tipo tipoDeArchivo(MultipartFile archivo) {
-		
-		String[] extensionfrag =archivo.getOriginalFilename().split("\\.");
-		String extension = extensionfrag[extensionfrag.length-1];
-		
-		if(extension.equals("mp4") || extension.equals("avi") || extension.equals("flv") || extension.equals("mkv") || extension.equals("mov")) {
-			
-			Tipo tipo =  Tipo.VIDEO;
-			return tipo;
-			
-			
-		} else if (extension.equals("mp3") || extension.equals("wav") || extension.equals("wma") || extension.equals("vorbis") || extension.equals("flac"))  {
-			
-			Tipo tipo = Tipo.AUDIO;
-			return tipo;
-			
-		} else if (extension.equals("jpg") || extension.equals("gif") || extension.equals("png") || extension.equals("png") || extension.equals("jpeg")) {
-		
-			Tipo tipo = Tipo.IMAGEN;
-			return tipo;
-		}else {
-			
-			return null;
-		}
-		
-		
-		
-		
-	}
+
+    private Tipo tipoDeArchivo(MultipartFile archivo) {
+
+        String[] extensionfrag = archivo.getOriginalFilename().split("\\.");
+        String extension = extensionfrag[extensionfrag.length - 1];
+
+        if (extension.equals("mp4") || extension.equals("avi") || extension.equals("flv") || extension.equals("mkv") || extension.equals("mov")) {
+
+            Tipo tipo = Tipo.VIDEO;
+            return tipo;
+
+        } else if (extension.equals("mp3") || extension.equals("wav") || extension.equals("wma") || extension.equals("vorbis") || extension.equals("flac")) {
+
+            Tipo tipo = Tipo.AUDIO;
+            return tipo;
+
+        } else if (extension.equals("jpg") || extension.equals("gif") || extension.equals("png") || extension.equals("png") || extension.equals("jpeg")) {
+
+            Tipo tipo = Tipo.IMAGEN;
+            return tipo;
+        } else {
+
+            return null;
+        }
+
+    }
 }
