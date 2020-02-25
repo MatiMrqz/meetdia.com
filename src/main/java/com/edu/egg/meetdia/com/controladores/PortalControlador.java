@@ -2,12 +2,16 @@ package com.edu.egg.meetdia.com.controladores;
 
 import com.edu.egg.meetdia.com.entidades.ConfirmationToken;
 import com.edu.egg.meetdia.com.entidades.Persona;
+import com.edu.egg.meetdia.com.entidades.Post;
 import com.edu.egg.meetdia.com.errores.ErrorServicio;
 import com.edu.egg.meetdia.com.repositorios.ConfirmationTokenRepositorio;
 import com.edu.egg.meetdia.com.repositorios.PersonaRepositorio;
+import com.edu.egg.meetdia.com.repositorios.PostRepositorio;
 import com.edu.egg.meetdia.com.servicios.PersonaServicio;
+import java.util.List;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +31,9 @@ public class PortalControlador {
     private PersonaRepositorio personaRepositorio;
     
     @Autowired
+    private PostRepositorio postRepositorio;
+    
+    @Autowired
     private ConfirmationTokenRepositorio confirmationTokenRepositorio;
     
     @GetMapping("/")
@@ -37,6 +44,15 @@ public class PortalControlador {
     @GetMapping("/login")
     public String login(){
         return "login.html";
+    }
+    
+    @PreAuthorize("hasAnyRole( 'ROLE_USUARIO_REGISTRADO' )")
+    @GetMapping("/muro")
+    public String muro(ModelMap modelo){
+        List<Post> listaPost = postRepositorio.mostrarUltimosPost();
+        modelo.addAttribute("listapost", listaPost);
+        
+        return "muro.html";
     }
     
     @GetMapping("/confirm-account")
