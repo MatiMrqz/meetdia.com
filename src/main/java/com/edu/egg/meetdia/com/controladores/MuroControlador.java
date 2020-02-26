@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.edu.egg.meetdia.com.enumeraciones.Categoria;
-import com.edu.egg.meetdia.com.ErrorServicio;
+import com.edu.egg.meetdia.com.errores.ErrorServicio;
 import com.edu.egg.meetdia.com.servicios.PostServicio;
 
 
