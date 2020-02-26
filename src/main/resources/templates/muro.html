@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>meetdia - Muro</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/animate.min.css" rel="stylesheet"> 
+  <link href="/css/font-awesome.min.css" rel="stylesheet">
+  <link href="/css/lightbox.css" rel="stylesheet">
+  <link href="/css/main_muro.css" rel="stylesheet">
+  <link id="/css-preset" href="/css/presets/preset1.css" rel="stylesheet">
+  <link href="/css/responsive.css" rel="stylesheet">
+
+  <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+  <![endif]-->
+  
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+<link rel="shortcut icon" href="/images/favicon.ico">
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+
+</head><!--/head-->
+
+<body  class="bodys">
+
+  <header></header><!--/#home-->
+  <section>
+    
+      <h2 class="masthead-subheading mb-0" th:if="${session.Usuariosession != null}" th:text="${session.Usuariosession.nombre}"></h2>
+    
+      <div class="ctarjeta">
+
+        <div class="card">
+            <img src="/images/features-bg.jpg">
+            <h4>Cine</h4>
+            <a href="#">Leer más</a>
+        </div>
+        
+        <div class="venta">
+            <img src="/images/features-bg.jpg">
+            <!--El largo de los caracterres lo van a tener que poner el que haga el post en el input-->
+            <h4 >Lorem ipsum dolor sit</h4>
+            <a href="#"class="gradient-button gradient-button-3"><i class='far fa-caret-square-right' style="font-size:25px;color:rgb(54, 54, 54);text-shadow:1px 1px 2px #3d3c3c;"></i></a>
+        </div>
+     <div class="card">
+            <img src="/images/features-bg.jpg">
+            <h4>Lorem ipsum dolor sit</h4>
+            <a href="#"class="gradient-button gradient-button-4"><i class='far fa-caret-square-right' style="font-size:25px;color:white;text-shadow:2px 2px 4px #000000;"></i></a>
+        </div>
+        
+    
+     <!-- Esta es la forma de hacer que itere segun sea venta o lo otro-->
+
+     
+        <div th:each="post : ${listapost}" class= "venta"  >
+            <img src="${post.titulo}" alt="">
+            <h4 src="${post.descripcion}"></h4>
+            <a href="#">Leer más</a>
+        </div>
+    </div>
+
+</section>
+</body>
+
+</html>
