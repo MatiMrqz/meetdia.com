@@ -35,10 +35,10 @@ public class PersonaServicio implements UserDetailsService {
 
     @Autowired
     private EmailSenderService emailSenderService;
-    
+
     @Autowired
     private ConfirmationTokenRepositorio confirmationTokenRepositorio;
-    
+
     @Transactional
     public void registrar(MultipartFile archivo, String nombre, String nickname, String profesion, String ciudad, String cp, String email, String clave1, String clave2) throws ErrorServicio {
         validar(nombre, nickname, profesion, ciudad, email, clave1, clave2);
@@ -57,19 +57,13 @@ public class PersonaServicio implements UserDetailsService {
         persona.setClave(encriptada);
 
         personaRepositorio.save(persona);
-        
-        ConfirmationToken confirmationToken = new ConfirmationToken(persona);
-        
-        confirmationTokenRepositorio.save(confirmationToken);
-        
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-            mailMessage.setTo(persona.getEmail());
-            mailMessage.setSubject("Completa tu Registro a meetdia.com!");
-            mailMessage.setFrom("meetdia");
-            mailMessage.setText("Para confirmar tu cuenta haz click aquí: "
-            +"http://localhost:8080/confirm-account?token="+confirmationToken.getConfirmationToken());
 
-            emailSenderService.sendEmail(mailMessage);
+        ConfirmationToken confirmationToken = new ConfirmationToken(persona);
+
+        confirmationTokenRepositorio.save(confirmationToken);
+
+        emailSenderService.sendEmail(persona.getEmail(), "Completa tu Registro a meetdia.com!", "meetdia", "Para confirmar tu cuenta haz click aquí: "
+                + "http://localhost:8080/confirm-account?token=" + confirmationToken.getConfirmationToken());
     }
 
     @Transactional
@@ -131,7 +125,7 @@ public class PersonaServicio implements UserDetailsService {
             throw new ErrorServicio("La ciudad no puede ser nula");
         }
         Persona personapormail = personaRepositorio.buscarPersonaporEmail(email);
-        if (personapormail != null){
+        if (personapormail != null) {
             throw new ErrorServicio("El E-Mail ya esta siendo utilizado");
         }
         if (email == null || email.isEmpty()) {
@@ -144,7 +138,7 @@ public class PersonaServicio implements UserDetailsService {
             throw new ErrorServicio("Las claves deben coincidir");
         }
         Persona personaporalias = personaRepositorio.buscarNickname(nickname);
-        if (personaporalias!=null) {
+        if (personaporalias != null) {
             throw new ErrorServicio("El nickname ya esta siendo utilizado");
         }
     }
@@ -152,19 +146,20 @@ public class PersonaServicio implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
         Persona persona = personaRepositorio.buscarPersonaporEmail(mail);
-        if (persona != null){
-            List<GrantedAuthority> permisos = new ArrayList<>();
-            GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_USUARIO_REGISTRADO");
-            permisos.add(p1);
-            
-            ServletRequestAttributes attr = (ServletRequestAttributes)RequestContextHolder.currentRequestAttributes();
-            HttpSession session = attr.getRequest().getSession(true);
-            session.setAttribute(("Usuariosession"), persona);
-            
-            User user = new User(persona.getEmail(),persona.getClave(),permisos);
-            return user;
-        }else{
-            return null;
+        if (persona != null) {
+            if (persona.isIs_enabled()) {
+                List<GrantedAuthority> permisos = new ArrayList<>();
+                GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_USUARIO_REGISTRADO");
+                permisos.add(p1);
+
+                ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+                HttpSession session = attr.getRequest().getSession(true);
+                session.setAttribute(("Usuariosession"), persona);
+
+                User user = new User(persona.getEmail(), persona.getClave(), permisos);
+                return user;
+            }
         }
+        return null;
     }
 }
