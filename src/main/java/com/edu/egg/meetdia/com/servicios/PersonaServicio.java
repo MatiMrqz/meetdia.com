@@ -77,6 +77,19 @@ public class PersonaServicio implements UserDetailsService {
             throw new ErrorServicio("No se encontro la persona solicitada");
         }
     }
+    
+    @Transactional
+    public void modificarContraseña(Persona persona, String clave1, String clave2) throws ErrorServicio {
+         if (clave1 == null || clave1.isEmpty() || clave1.length() < 6) {
+            throw new ErrorServicio("La clave de usuario no puede ser nula, y debe ser mayor a 6 caracteres");
+        }
+        if (!clave1.equals(clave2)) {
+            throw new ErrorServicio("Las claves deben coincidir");
+        }
+        
+        String encriptada = new BCryptPasswordEncoder().encode(clave1);
+        persona.setClave(encriptada);
+    }
 
     @Transactional
     public void modificarPersona(String idPersona, String nombre, String profesion, String domicilio, String codpostal, String ciudad, String email, String alias, String clave, String mime, byte[] contenido) throws ErrorServicio {

@@ -8,15 +8,19 @@ import com.edu.egg.meetdia.com.errores.ErrorServicio;
 import com.edu.egg.meetdia.com.repositorios.ConfirmationTokenRepositorio;
 import com.edu.egg.meetdia.com.repositorios.PersonaRepositorio;
 import com.edu.egg.meetdia.com.repositorios.PostRepositorio;
+import com.edu.egg.meetdia.com.servicios.EmailSenderService;
 import com.edu.egg.meetdia.com.servicios.PersonaServicio;
 import com.edu.egg.meetdia.com.servicios.PostServicio;
 import java.util.List;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,6 +38,9 @@ public class PortalControlador {
 
     @Autowired
     private PostRepositorio postRepositorio;
+
+    @Autowired
+    private EmailSenderService emailSenderService;
 
     @Autowired
     private ConfirmationTokenRepositorio confirmationTokenRepositorio;
@@ -90,6 +97,55 @@ public class PortalControlador {
         return "exito.html";
     }
 
+    @GetMapping("/forgot")
+    public String olvide_pass(ModelMap modelo, String email) {
+        if (email != null) {
+            Persona persona = personaRepositorio.buscarPersonaporEmail(email);
+            if (persona != null) {
+                ConfirmationToken confirmationToken = new ConfirmationToken(persona);
+                confirmationTokenRepositorio.save(confirmationToken);
+                emailSenderService.sendEmail(persona.getEmail(), "Recuperacion de Contraseña", "Meetdia", "Recupera tu cuenta haciendo click en el siguiente enlace: "
+                        + "http://localhost:8080/change-password/" + confirmationToken.getConfirmationToken());
+                modelo.put("titulo", "Hemos enviado un link a tu mail");
+                modelo.put("descripcion", "Revisa tu casilla para continuar");
+                return "exito.html";
+            }else{
+                modelo.put("titulo", "Error");
+                modelo.put("descripcion", "No se encontró el usuario");
+                return "exito.html";
+            }
+        }
+        return "forgot.html";
+    }
+
+    @RequestMapping(value = {"/change-password/{token}"})
+    public String changePassword(ModelMap modelo, @PathVariable("token") String token) {
+        ConfirmationToken Actoken = confirmationTokenRepositorio.buscarToken(token);
+        if (Actoken != null) {
+            modelo.put("token", token);
+            return "change-password.html";
+        } else {
+            modelo.put("titulo", "Error");
+            modelo.put("descripcion", "Link inválido o incorrecto, intente nuevamente");
+        }
+        return "exito.html";
+    }
+
+    @PostMapping(value = {"/change-password"})
+    public String changePassword(ModelMap modelo, @RequestParam String token, @RequestParam String clave1, @RequestParam String clave2) {
+        ConfirmationToken Actoken = confirmationTokenRepositorio.buscarToken(token);
+        try {
+            personaServicio.modificarContraseña(Actoken.getPersona(), clave1, clave2);
+            Actoken.setConfirmationToken(UUID.randomUUID().toString());
+            confirmationTokenRepositorio.save(Actoken);
+            modelo.put("titulo", "Cambio correcto!");
+            modelo.put("descripcion", "La contraseña ha sido cambiada correctamente. Puede iniciar sesión.");
+            return "exito.html";
+        } catch (ErrorServicio ex) {
+            modelo.put("error", ex.getMessage());
+            return "forward:/change-password/"+token;
+        }
+    }
 //    @PreAuthorize("hasAnyRole( 'ROLE_USUARIO_REGISTRADO' )")
 //    @GetMapping(value = {"/muro"})
 //    public String muro(ModelMap modelo) {
