@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @Controller
 @RequestMapping("/")
@@ -98,14 +99,14 @@ public class PortalControlador {
     }
 
     @GetMapping("/forgot")
-    public String olvide_pass(ModelMap modelo, String email) {
+    public String forgot_pass(ModelMap modelo, String email) {
         if (email != null) {
             Persona persona = personaRepositorio.buscarPersonaporEmail(email);
             if (persona != null) {
                 ConfirmationToken confirmationToken = new ConfirmationToken(persona);
                 confirmationTokenRepositorio.save(confirmationToken);
                 emailSenderService.sendEmail(persona.getEmail(), "Recuperacion de Contraseña", "Meetdia", "Recupera tu cuenta haciendo click en el siguiente enlace: "
-                        + "http://localhost:8080/change-password/" + confirmationToken.getConfirmationToken());
+                        + ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString() +"/change-password/"+ confirmationToken.getConfirmationToken());
                 modelo.put("titulo", "Hemos enviado un link a tu mail");
                 modelo.put("descripcion", "Revisa tu casilla para continuar");
                 return "exito.html";

@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @Service
 public class PersonaServicio implements UserDetailsService {
@@ -63,7 +64,7 @@ public class PersonaServicio implements UserDetailsService {
         confirmationTokenRepositorio.save(confirmationToken);
 
         emailSenderService.sendEmail(persona.getEmail(), "Completa tu Registro a meetdia.com!", "meetdia", "Para confirmar tu cuenta haz click aquí: "
-                + "http://localhost:8080/confirm-account?token=" + confirmationToken.getConfirmationToken());
+                + ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString()+"/confirm-account?token=" + confirmationToken.getConfirmationToken());
     }
 
     @Transactional
