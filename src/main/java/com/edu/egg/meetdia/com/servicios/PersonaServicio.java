@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @Service
 public class PersonaServicio implements UserDetailsService {
@@ -63,7 +64,7 @@ public class PersonaServicio implements UserDetailsService {
         confirmationTokenRepositorio.save(confirmationToken);
 
         emailSenderService.sendEmail(persona.getEmail(), "Completa tu Registro a meetdia.com!", "meetdia", "Para confirmar tu cuenta haz click aquí: "
-                + "http://localhost:8080/confirm-account?token=" + confirmationToken.getConfirmationToken());
+                + ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString()+"/confirm-account?token=" + confirmationToken.getConfirmationToken());
     }
 
     @Transactional
@@ -76,6 +77,19 @@ public class PersonaServicio implements UserDetailsService {
         } else {
             throw new ErrorServicio("No se encontro la persona solicitada");
         }
+    }
+    
+    @Transactional
+    public void modificarContraseña(Persona persona, String clave1, String clave2) throws ErrorServicio {
+         if (clave1 == null || clave1.isEmpty() || clave1.length() < 6) {
+            throw new ErrorServicio("La clave de usuario no puede ser nula, y debe ser mayor a 6 caracteres");
+        }
+        if (!clave1.equals(clave2)) {
+            throw new ErrorServicio("Las claves deben coincidir");
+        }
+        
+        String encriptada = new BCryptPasswordEncoder().encode(clave1);
+        persona.setClave(encriptada);
     }
 
     @Transactional
