@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface PostRepositorio extends JpaRepository<Post, String>{
     @Query("SELECT p FROM Post p WHERE p.fecha_publicacion = (SELECT MAX(m.fecha_publicacion) FROM Post m)")
     public Post buscarUltimoPost();
-    @Query("SELECT p FROM Post p ORDER BY p.fecha_publicacion")
+    @Query("SELECT p FROM Post p ORDER BY p.fecha_publicacion DESC")
     public List<Post> mostrarUltimosPost();
 }

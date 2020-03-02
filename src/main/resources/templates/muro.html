@@ -1,167 +1,129 @@
 <!DOCTYPE html>
 <html lang="es">
 
-  <!--AGREGAR LA BARRA A TODO-->
+<!--AGREGAR LA BARRA A TODO-->
 
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0,shrink-to-fit=no">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0,shrink-to-fit=no">
 
-    <title> Meetia - Muro</title>
+  <title> Meetdia - Muro</title>
 
-    <!-- estilos CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/animate.min.css" rel="stylesheet"> 
-    <link href="css/estilos.css" rel="stylesheet">
-    <link href="css/main_muro.css" rel="stylesheet">
-    <link href="css/indexCSS.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/indexCSS.css">
-    <link href="css/lightbox.css" rel="stylesheet">
-    <link id="css-preset" href="css/presets/preset1.css" rel="stylesheet">
-    <link href="css/responsive.css" rel="stylesheet">
-    <link href="css/footer.css" rel="stylesheet">
-    
-    <!-- Letras -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+  <!-- estilos CSS -->
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/animate.min.css" rel="stylesheet"> 
+  <link href="/css/estilos.css" rel="stylesheet">
+  <link href="/css/main_muro.css" rel="stylesheet">
+  <link href="/css/indexCSS.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="/css/indexCSS.css">
+  <link href="/css/lightbox.css" rel="stylesheet">
+  <link id="css-preset" href="/css/presets/preset1.css" rel="stylesheet">
+  <link href="/css/responsive.css" rel="stylesheet">
+  <link href="/css/footer.css" rel="stylesheet">
+
+  <!-- Letras -->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
   
-    <!--Iconos -->
-    <link rel="shortcut icon" href="img/favicon.ico">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
+  <!--Iconos -->
+  <link rel="shortcut icon" href="/images/meetlogo.png">
+  <link href="/css/font-awesome.min.css" rel="stylesheet">
 
-  </head>
+</head>
 
 <body class="bodys">
   <header>
-      <nav class="navbar navbarcolor navbar-expand-md navbar-dark">
-        <a class="navbar-brand  ml-3" href="#">
-            <img src="img/Logo-Meetdia.png" width="45" height="45" class="d-inline-block align-top" alt="meetdia.com">  
-        </a>
+    <nav class="navbar navbarcolor navbar-expand-md navbar-dark">
+      <a class="navbar-brand  ml-3" href="#">
+        <img src="/images/Logo-Meetdia.png" width="45" height="45" class="d-inline-block align-top" alt="meetdia.com">  
+      </a>
 
-        <a class="navbar-brand letra pt-4"  href="#">
-            Meetia.com
-        </a>
+      <a class="navbar-brand letra pt-4"  href="#">
+        Meetdia.com
+      </a>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <div class="collapse navbar-collapse row" id="navbarSupportedContent">
-            <ul class="navbar-nav m-auto col-4">
-            <li class="nav-item active">
+      <div class="collapse navbar-collapse row" id="navbarSupportedContent">
+        <ul class="navbar-nav m-auto col-4">
+          <li class="nav-item active">
 
-                <button class="btn bttcolor btn-xs my-1" type="submit">
-                    <li class="nav-item dropdown">
+            <button class="btn bttcolor btn-xs my-1" type="submit">
+              <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle  letra2 text-white active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Publicar
+                  Menu
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Ofrecer Trabajo</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Buscar Trabajo</a>
+                  <a class="dropdown-item" href="/muro/nuevo-post">Publicar</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
                 </div>
-                </button>
+              </button>
 
             </li>
             
-            </ul>
-<i class='far fa-comments' style="font-size:25px;color:white;text-shadow:2px 2px 4px #000000;"></i>
+          </ul>
+          <i class='far fa-comments' style="font-size:25px;color:white;text-shadow:2px 2px 4px #000000;"></i>
         </div>
-    </nav>
+      </nav>
 
-  </header>
-
+    </header>
+    <h2 class="masthead-subheading mb-0" th:text="${session.Usuariosession.nickname}" style="color:white;"></h2>
     <section class="ctarjeta">
-      <h2 class="masthead-subheading mb-0" th:if="${session.Usuariosession != null}" th:text="${session.Usuariosession.nombre}"></h2>
-          <!--TARJETAS DE PUBLICACIÓN-->
-          <!--Carta Pelicula-->
-        <div class="card">
+      <!--TARJETAS DE PUBLICACIÓN-->
+      <!--Carta thymeleaf-->
+      <div th:each="post : ${listapost}" >
+        <div th:if="${post.busco}" class="card">
           <div class="contenedor">
-            <img src="img/features-bg.jpg">
-            <div class="icono-encima"><i class='fa fa-video-camera' style="font-size:28px;color:white;"></i></div>
+            <img th:if= "${post.multimedia.encoded64 != ''}" th:src="@{'data:image/jpeg;base64,'+${post.multimedia.encoded64}}" alt="Post">
+            <img th:unless="${post.multimedia.encoded64 != ''}" src="/images/no-image.svg">
+            <div th:switch="${post.categoria.displayValue}" class="icono-encima">
+              <p th:case="'Música'" class='fas fa-headphones' style="font-size:28px;color:lightgray;"></p>
+              <p th:case="'Fotografía'" class="fas fa-camera" style="font-size:28px;color:lightgray;"></p>
+              <p th:case="'Cine/Video'" class='fas fa-video' style="font-size:28px;color:lightgray;"></p>
+              <p th:case="'Iluminación'" class="fas fa-lightbulb" style="font-size:28px;color:lightgray;"></p>
+              <p th:case="'Guión'" class="fas fa-file-alt" style="font-size:28px;color:lightgray;"></p>
+              <p th:case="'Animación'" class="fas fa-dragon" style="font-size:28px;color:lightgray;"></p>
+              <p th:case="*" class="fas fa-dragon" style="font-size:28px;color:lightgray;"></p>
+            </div>
           </div>
-          <h3>Cine</h3>
+
+          <h3 th:text="${post.titulo}"></h3>
           <div class="parrafo">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi debitis nisi possimus, cum provident nam id odit reprehenderit officia, quo distinctio est sunt nostrum, modi fugiat magni necessitatibus. Vel, placeat?</p>
+            <p th:text="${post.persona.nickname}"></p>
           </div>
           <a href="#"class="gradient-button gradient-button-4"><i class="fas fa-plus" style="font-size:15px;color:white;text-shadow:2px 2px 4px #000000;"></i></a>
         </div>
-          <!--Carta Fotografia-->
-        <div class="card">
+        <div th:unless="${post.busco}" class="venta">
           <div class="contenedor">
-            <img src="img/features-bg.jpg">
-            <div class="icono-encima"><i class="fas fa-camera-retro" style="font-size:28px;color:white;"></i></div>
+            <img th:if= "${post.multimedia.encoded64 != ''}" th:src="@{'data:image/jpeg;base64,'+${post.multimedia.encoded64}}" alt="Post">
+            <img th:unless="${post.multimedia.encoded64 != ''}" src="/images/no-image.svg">
+            <div th:switch="${post.categoria.displayValue}" class="icono-encima">
+              <p th:case="'Música'" class='fas fa-headphones' style="font-size:28px;color:lightgray;"></p>
+              <p th:case="'Fotografía'" class="fas fa-camera" style="font-size:28px;color:lightgray;"></p>
+              <p th:case="'Cine/Video'" class='fas fa-video' style="font-size:28px;color:lightgray;"></p>
+              <p th:case="'Iluminación'" class="fas fa-lightbulb" style="font-size:28px;color:lightgray;"></p>
+              <p th:case="'Guión'" class="fas fa-file-alt" style="font-size:28px;color:lightgray;"></p>
+              <p th:case="'Animación'" class="fas fa-dragon" style="font-size:28px;color:lightgray;"></p>
+              <p th:case="*" class="fas fa-dragon" style="font-size:28px;color:lightgray;"></p>
+            </div>
           </div>
-          <h3>Fotografia</h3>
+          <h3 th:text="${post.titulo}"></h3>
           <div class="parrafo">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi debitis nisi possimus, cum provident nam id odit reprehenderit officia, quo distinctio est sunt nostrum, modi fugiat magni necessitatibus. Vel, placeat?</p>
+            <p th:text="${post.persona.nickname}"></p>
           </div>
           <a href="#"class="gradient-button gradient-button-4"><i class="fas fa-plus" style="font-size:15px;color:white;text-shadow:2px 2px 4px #000000;"></i></a>
-        </div> 
-          <!--Carta Música-->
-        <div class="card">
-          <div class="contenedor">
-            <img src="img/features-bg.jpg">
-            <div class="icono-encima"><i class='fa fa-headphones' style="font-size:28px;color:white;"></i></div>
-          </div>
-          <h3>Música</h3>
-          <div class="parrafo">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi debitis nisi possimus, cum provident nam id odit reprehenderit officia, quo distinctio est sunt nostrum, modi fugiat magni necessitatibus. Vel, placeat?</p>
-          </div>
-          <a href="#"class="gradient-button gradient-button-4"><i class="fas fa-plus" style="font-size:15px;color:white;text-shadow:2px 2px 4px #000000;"></i></a>
-        </div> 
-                  <!--TARJETAS DE VENTA-->
-          <!--Carta Pelicula-->
-          <div class="venta">
-            <div class="contenedor">
-              <img src="img/features-bg.jpg">
-              <div class="icono-encima"><i class='fa fa-video-camera' style="font-size:28px;color:white;"></i></div>
-            </div>
-            <h3>Cine</h3>
-            <div class="parrafo">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi debitis nisi possimus, cum provident nam id odit reprehenderit officia, quo distinctio est sunt nostrum, modi fugiat magni necessitatibus. Vel, placeat?</p>
-            </div>
-            <a href="#"class="gradient-button gradient-button"><i class="fas fa-plus" style="font-size:15px;color:white;text-shadow:2px 2px 4px #000000;"></i></a>
-          </div>
-            <!--Carta Fotografia-->
-          <div class="venta">
-            <div class="contenedor">
-              <img src="img/features-bg.jpg">
-              <div class="icono-encima"><i class="fas fa-camera-retro" style="font-size:28px;color:white;"></i></div>
-            </div>
-            <h3>Fotografia</h3>
-            <div class="parrafo">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi debitis nisi possimus, cum provident nam id odit reprehenderit officia, quo distinctio est sunt nostrum, modi fugiat magni necessitatibus. Vel, placeat?</p>
-            </div>
-            <a href="#"class="gradient-button gradient-button"><i class="fas fa-plus" style="font-size:15px;color:white;text-shadow:2px 2px 4px #000000;"></i></a>
-          </div> 
-            <!--Carta Música-->
-          <div class="venta">
-            <div class="contenedor">
-              <img src="img/features-bg.jpg">
-              <div class="icono-encima"><i class='fa fa-headphones' style="font-size:28px;color:white;"></i></div>
-            </div>
-            <h3>Música</h3>
-            <div class="parrafo">
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi debitis nisi possimus, cum provident nam id odit reprehenderit officia, quo distinctio est sunt nostrum, modi fugiat magni necessitatibus. Vel, placeat?</p>
-            </div>
-            <a href= "#" class="gradient-button gradient-button"><i class="fas fa-plus" style="font-size:15px;color:white;text-shadow:2px 2px 4px #000000;"></i></a>
-          </div>
+        </div>
+      </div>
     </section>
-<!-- Esta es la forma de hacer que itere segun sea venta o lo otro
-        <div th:each="post : ${listapost}" class= "venta"  >
-            <img src="${post.titulo}" alt="">
-            <h4 src="${post.descripcion}"></h4>
-            
-            <a href="#">Leer más</a>
-        </div>
-    </div>-->
     <footer id="footer">
       <div class="footer-top wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
         <div class="container text-center">
           <div class="footer-logo">
-            <a href="index.html"><img class="img-responsive" src="img/Logo-Meetdia.png" height="40px" alt="Logo meetia"></a>
+            <a href="index.html"><img class="img-responsive" src="/images/Logo-Meetdia.png" height="40px" alt="Logo meetia"></a>
           </div>
           <div class="social-icons">
             <ul>
@@ -176,23 +138,21 @@
         </div>
       </div>
     </footer>
-</body>
-        
-        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-        <script type="text/javascript" src="js/jquery.js"></script>
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
-        <script type="text/javascript" src="js/jquery.inview.min.js"></script>
-        <script type="text/javascript" src="js/wow.min.js"></script>
-        <script type="text/javascript" src="js/mousescroll.js"></script>
-        <script type="text/javascript" src="js/smoothscroll.js"></script>
-        <script type="text/javascript" src="js/jquery.countTo.js"></script>
-        <script type="text/javascript" src="js/lightbox.min.js"></script>
-        <script type="text/javascript" src="js/main.js"></script>
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-</html>
+  </body>
+
+  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <script type="text/javascript" src="/js/jquery.js"></script>
+  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+  <script type="text/javascript" src="/js/jquery.inview.min.js"></script>
+  <script type="text/javascript" src="/js/wow.min.js"></script>
+  <script type="text/javascript" src="/js/mousescroll.js"></script>
+  <script type="text/javascript" src="/js/smoothscroll.js"></script>
+  <script type="text/javascript" src="/js/jquery.countTo.js"></script>
+  <script type="text/javascript" src="/js/lightbox.min.js"></script>
+  <script type="text/javascript" src="/js/main.js"></script>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src='/js/all.js'></script>
+  </html>

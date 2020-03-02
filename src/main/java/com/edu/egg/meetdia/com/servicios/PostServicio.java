@@ -24,7 +24,7 @@ public class PostServicio {
     MultimediaServicio ms;
     
     @Transactional
-    public void nuevoPost(String titulo, String descripcion, String idPersona, MultipartFile archivo, Categoria categoria) throws ErrorServicio{
+    public void nuevoPost(String titulo, String descripcion, String idPersona, MultipartFile archivo, String categoria, boolean busco) throws ErrorServicio{
         validar(titulo, descripcion, categoria);
         Post post = new Post();
         post.setTitulo(titulo);
@@ -32,17 +32,18 @@ public class PostServicio {
         post.setPersona(personaRepositorio.buscarPersona(idPersona));
         post.setFecha_publicacion(new Date());
         post.setMultimedia(ms.guardar(archivo));
-        post.setCategoria(categoria);
+        post.setCategoria(Categoria.valueOf(categoria));
+        post.setBusco(busco);
         postRepositorio.save(post);
     }
-    private void validar(String titulo, String descripcion,Categoria categoria) throws ErrorServicio{
+    private void validar(String titulo, String descripcion,String categoria) throws ErrorServicio{
         if (titulo==null || titulo.isEmpty()){
-            throw new ErrorServicio("El titulo no puede ser nulo");
+            throw new ErrorServicio("Debe ingresar un titulo");
         }
         if (descripcion == null || descripcion.isEmpty()){
-            throw new ErrorServicio("La descripcion no puede ser nula");
+            throw new ErrorServicio("Debe ingresar una descripcion");
         }
-        if (categoria == null){
+        if (categoria == null || categoria.isEmpty() ){
             throw new ErrorServicio("La categoria debe ser seleccionada");
         }
     }
