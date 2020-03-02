@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>meetdia - Muro</title>
+  <title>Meetdia - Muro</title>
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <link href="/css/animate.min.css" rel="stylesheet"> 
   <link href="/css/font-awesome.min.css" rel="stylesheet">
@@ -13,58 +13,83 @@
   <link href="/css/main_muro.css" rel="stylesheet">
   <link id="/css-preset" href="/css/presets/preset1.css" rel="stylesheet">
   <link href="/css/responsive.css" rel="stylesheet">
+  <script src="/js/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="/js/bootstrap.min.js"></script>
 
   <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
   <![endif]-->
   
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
-<link rel="shortcut icon" href="/images/favicon.ico">
-<meta name='viewport' content='width=device-width, initial-scale=1'>
-<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+  <link rel="shortcut icon" href="images/meetlogo.png">
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <!--<script src='https://kit.fontawesome.com/a076d05399.js'></script>-->
 
 </head><!--/head-->
 
 <body  class="bodys">
 
-  <header></header><!--/#home-->
-  <section>
-    
-      <h2 class="masthead-subheading mb-0" th:if="${session.Usuariosession != null}" th:text="${session.Usuariosession.nombre}"></h2>
-    
-      <div class="ctarjeta">
+  <header>
+    <div class="container-fluid" style="background-color: #9ACD32;">
+      <div class="container">
+        <nav class="navbar navbarcolor navbar-expand-md navbar-dark">
+          <a class="navbar-brand  ml-3" href="#">
 
-        <div class="card">
-            <img src="/images/features-bg.jpg">
-            <h4>Cine</h4>
-            <a href="/muro/index">Leer más</a>
-        </div>
-        
-        <div class="venta">
-            <img src="/images/features-bg.jpg">
-            <!--El largo de los caracterres lo van a tener que poner el que haga el post en el input-->
-            <h4 >Lorem ipsum dolor sit</h4>
-            <a href="#"class="gradient-button gradient-button-3"><i class='far fa-caret-square-right' style="font-size:25px;color:rgb(54, 54, 54);text-shadow:1px 1px 2px #3d3c3c;"></i></a>
-        </div>
-     <div class="card">
-            <img src="/images/features-bg.jpg">
-            <h4>Lorem ipsum dolor sit</h4>
-            <a href="#"class="gradient-button gradient-button-4"><i class='far fa-caret-square-right' style="font-size:25px;color:white;text-shadow:2px 2px 4px #000000;"></i></a>
-        </div>
-        
-    
-     <!-- Esta es la forma de hacer que itere segun sea venta o lo otro-->
+            <img src="/images/Logo-Meetdia.png" width="45" height="45" class="d-inline-block align-top" alt="meetdia.com">
 
-     
-        <div th:each="post : ${listapost}" class= "venta"  >
-            <img src="${post.titulo}" alt="">
-            <h4 src="${post.descripcion}"></h4>
-            <a href="#">Leer más</a>
-        </div>
-    </div>
+          </a>
 
-</section>
-</body>
+          <a class="navbar-brand letra pt-4"  href="#">
+            Meetdia.com
+          </a>
 
-</html>
+          <button class="navbar-toggler" style="border-color: white;" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <img src="/images/navbar2.svg" width="45" height="45" class="d-inline-block align-top" alt="meetdia.com">
+          </button>
+
+          <div class="collapse navbar-collapse row" id="navbarSupportedContent">
+            <ul class="navbar-nav m-auto col-4">
+              <li class="nav-item active">
+                  <a class="dropdown-item" href="/logout">Cerrar sesion</a>
+              </li>
+            </ul>
+
+                <button class="btn bttcolor btn-sm my-1" type="submit">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle letra2 text-white active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Publicar</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                      <a class="dropdown-item" href="/muro/nuevo-post">Nuevo Post</a>
+                    </div>
+                  </button>
+
+                </li>
+
+              </ul>
+
+            </div>
+          </nav>
+        </header><!--/#home-->
+        <section>
+
+          <h2 class="masthead-subheading mb-0" th:if="${session.Usuariosession != null}" th:text="${session.Usuariosession.nickname}"></h2>
+
+          <div class="ctarjeta">
+
+            <!-- Esta es la forma de hacer que itere segun sea venta o lo otro-->
+
+
+            <div th:each="post : ${listapost}" class= "venta"  >
+                <img  th:src="@{'data:image/jpeg;base64,'+${post.multimedia.encoded64}}" alt="Post">
+              <h4 th:text="${post.titulo}"></h4>
+              <p th:text="${post.descripcion}"></p>
+              <p th:text="${post.persona.nickname}"></p>
+              <a href="#">Leer más</a>
+            </div>
+          </div>
+
+        </section>
+      </body>
+
+      </html>

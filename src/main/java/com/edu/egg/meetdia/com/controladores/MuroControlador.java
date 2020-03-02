@@ -13,6 +13,7 @@ import com.edu.egg.meetdia.com.enumeraciones.Categoria;
 import com.edu.egg.meetdia.com.errores.ErrorServicio;
 import com.edu.egg.meetdia.com.repositorios.PostRepositorio;
 import com.edu.egg.meetdia.com.servicios.PostServicio;
+import java.util.Base64;
 import java.util.List;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,23 +38,29 @@ public class MuroControlador {
     }
     
     @PreAuthorize("hasAnyRole( 'ROLE_USUARIO_REGISTRADO' )")
-    @GetMapping("/index")
-    public String index2(ModelMap modelo){
-        modelo.put("titulo", "UD esta adentro");
-        modelo.put("descripcion", "ud esta en el muro");
-        return "exito.html";
+    @GetMapping("/nuevo-post")
+    public String editapost(ModelMap modelo){
+        return "nuevo_post.html";
     }
     
-    @PostMapping("/muro/agregarPost")
-    public String nuevoPost(ModelMap modelo, @RequestParam String titulo, @RequestParam String descripcion, @RequestParam String idPersona, @RequestParam MultipartFile archivo, @RequestParam Categoria categoria) {
+    @PostMapping("/publicar")
+    public String nuevoPost(ModelMap modelo, @RequestParam String titulo, @RequestParam String descripcion, @RequestParam String idPersona, MultipartFile archivo, String categoria, String busco_check) {
+        boolean busco;
+        if (busco_check  == null){
+            busco = false;
+        }else{
+            busco = true;
+        }
         try {
-            postServicio.nuevoPost(titulo, descripcion, idPersona, archivo, categoria);
-            modelo.put("titulo", "POST");
-            modelo.put("descripcion", "Creado de Forma Correcta!");
-            return "exito.html";
+            postServicio.nuevoPost(titulo, descripcion, idPersona, archivo, categoria, busco);
+            return "forward:/muro/";
         } catch (ErrorServicio ex) {
             modelo.put("error", ex.getMessage());
-            return "muro.html";
+            modelo.put("catOpt",categoria);
+            modelo.put("titulo",titulo);
+            modelo.put("descripcion",descripcion);
+            modelo.put("check_value", busco);
+            return "nuevo_post.html";
         }
     }
 }

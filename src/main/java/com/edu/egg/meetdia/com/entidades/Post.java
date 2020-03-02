@@ -22,7 +22,9 @@ public class Post {
     private String titulo;
     private String descripcion;
     
-    @Temporal(TemporalType.DATE)
+    private boolean busco;
+    
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fecha_publicacion;
     
     @OneToOne
@@ -85,4 +87,12 @@ public class Post {
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     } 
+    
+        public boolean isBusco() {
+        return busco;
+    }
+
+    public void setBusco(boolean busco) {
+        this.busco = busco;
+    }
 }

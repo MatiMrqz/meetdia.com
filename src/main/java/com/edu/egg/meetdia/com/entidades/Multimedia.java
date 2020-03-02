@@ -11,6 +11,7 @@ import javax.persistence.Lob;
 import org.hibernate.annotations.GenericGenerator;
 
 import com.edu.egg.meetdia.com.enumeraciones.*;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
@@ -28,6 +29,17 @@ public class Multimedia {
 	private byte[] contenidoMultimedia;
 	@Enumerated(EnumType.STRING)
 	private Tipo tipo;
+        @Lob
+	@Basic(fetch = FetchType.LAZY)
+        private String encoded64;
+
+    public String getEncoded64() {
+        return encoded64;
+    }
+
+    public void setEncoded64(String encoded64) {
+        this.encoded64 = encoded64;
+    }
 
 	public byte[] getContenidoMultimedia() {
 		return contenidoMultimedia;
