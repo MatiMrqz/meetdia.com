@@ -48,6 +48,7 @@
                         <button class="btn bttcolor btn-xs my-1" type="submit">
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle  letra2 text-white active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<<<<<<< HEAD
                                     Publicar
                                 </a>
 
@@ -55,6 +56,15 @@
                                     <a class="dropdown-item" href="#">Ofrecer Trabajo</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#">Buscar Trabajo</a>
+=======
+                                    Menu
+                                </a>
+
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/logout">Cerrar Sesion</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="/muro/">Inicio</a>
+>>>>>>> master
                                 </div>
                             </li>
                         </button>
@@ -79,7 +89,12 @@
                 <div class="card">
                     <img class="card-img-top" src="/img/iceland.jpg" alt="Card image cap">
                     <div class="text-center margen-avatar">
+<<<<<<< HEAD
                         <img  th:src="@{'data:image/jpeg;base64,'+${session.Usuariosession.multimedia.encoded64}}" alt="" class="rounded-circle border" width="100px" />
+=======
+                        <img  th:if= "${session.Usuariosession.multimedia.encoded64 != ''}" th:src="@{'data:image/jpeg;base64,'+${session.Usuariosession.multimedia.encoded64}}" alt="avatar" class="rounded-circle border" width="100px" />
+                        <img th:unless="${session.Usuariosession.multimedia.encoded64 != ''}" src="/images/no-image.svg" alt="avatar" class="rounded-circle border" width="100px">
+>>>>>>> master
                         <!--<img src="/img/avatar-dhg.png" alt="" class="rounded-circle border" width="100px"> -->
                     </div>
                     <div class="card-body text-center">
@@ -103,7 +118,12 @@
                             <div class="row py-3">
                                 <!-- Avatar -->
                                 <div class="col-3 col-sm-2 col-lg-1">
+<<<<<<< HEAD
                                     <img  th:src="@{'data:image/jpeg;base64,'+${session.Usuariosession.multimedia.encoded64}}" alt="" class="rounded-circle border" width="60px" />
+=======
+                                    <img  th:if= "${session.Usuariosession.multimedia.encoded64 != ''}" th:src="@{'data:image/jpeg;base64,'+${session.Usuariosession.multimedia.encoded64}}" alt="avatar" class="rounded-circle border" width="60px" />
+                                    <img th:unless="${session.Usuariosession.multimedia.encoded64 != ''}" src="/images/no-image.svg" alt="avatar" class="rounded-circle border" width="60px">
+>>>>>>> master
                                 </div><!-- Avatar -->
                                 <article class="col-9 col-sm-10 col-lg-11">
                                     <form action="/muro/publicar" method="POST" enctype="multipart/form-data">
