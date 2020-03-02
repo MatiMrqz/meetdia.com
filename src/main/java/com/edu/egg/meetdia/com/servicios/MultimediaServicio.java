@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.edu.egg.meetdia.com.enumeraciones.Tipo;
 import com.edu.egg.meetdia.com.errores.ErrorServicio;
 import com.edu.egg.meetdia.com.repositorios.MultimediaRepositorio;
+import java.util.Base64;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -28,6 +29,7 @@ public class MultimediaServicio {
                 multimedia.setNombre(archivo.getName());
                 multimedia.setContenidoMultimedia(archivo.getBytes());
                 multimedia.setTipo(tipoDeArchivo(archivo));
+                multimedia.setEncoded64(Base64.getEncoder().encodeToString(archivo.getBytes()));
                 multimediaRepositorio.save(multimedia);
                 return multimedia;
 
