@@ -103,6 +103,10 @@ body {
     text-align: center;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
+<<<<<<< HEAD
+=======
+    background: repeat;
+>>>>>>> master
 }
 
 .contenedor-form .reset-password a {
