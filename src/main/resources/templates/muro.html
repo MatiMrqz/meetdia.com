@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+ <html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <!--AGREGAR LA BARRA A TODO-->
 
@@ -52,7 +52,7 @@
 
             <button class="btn bttcolor btn-xs my-1" type="submit">
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle  letra2 text-white active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle letra2 text-white active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   Menu
                 </a>
 
@@ -81,13 +81,13 @@
             <img th:if= "${post.multimedia.encoded64 != ''}" th:src="@{'data:image/jpeg;base64,'+${post.multimedia.encoded64}}" alt="Post">
             <img th:unless="${post.multimedia.encoded64 != ''}" src="/images/no-image.svg">
             <div th:switch="${post.categoria.displayValue}" class="icono-encima">
-              <p th:case="'Música'" class='fas fa-headphones' style="font-size:28px;color:gray;opacity:0.5;"></p>
-              <p th:case="'Fotografía'" class="fas fa-camera" style="font-size:28px;color:gray;opacity:0.5;"></p>
-              <p th:case="'Cine/Video'" class='fas fa-video' style="font-size:28px;color:gray;opacity:0.5;"></p>
-              <p th:case="'Iluminación'" class="fas fa-lightbulb" style="font-size:28px;color:gray;opacity:0.5;"></p>
-              <p th:case="'Guión'" class="fas fa-file-alt" style="font-size:28px;color:gray;opacity:0.5;"></p>
-              <p th:case="'Animación'" class="fas fa-dragon" style="font-size:28px;color:gray;opacity:0.5;"></p>
-              <p th:case="*" class="fas fa-dragon" style="font-size:28px;color:gray;opacity:0.5;"></p>
+              <p th:case="'Música'" class='fas fa-headphones' style="font-weight: 900;font-size:28px;color:gray;opacity:0.5;"></p>
+              <p th:case="'Fotografía'" class="fas fa-camera" style="font-weight: 900;font-size:28px;color:gray;opacity:0.5;"></p>
+              <p th:case="'Cine/Video'" class='fas fa-video' style="font-weight: 900;font-size:28px;color:gray;opacity:0.5;"></p>
+              <p th:case="'Iluminación'" class="fas fa-lightbulb" style="font-weight: 900;font-size:28px;color:gray;opacity:0.5;"></p>
+              <p th:case="'Guión'" class="fas fa-file-alt" style="font-weight: 900;font-size:28px;color:gray;opacity:0.5;"></p>
+              <p th:case="'Animación'" class="fas fa-dragon" style="font-weight: 900;font-size:28px;color:gray;opacity:0.5;"></p>
+              <p th:case="*" class="fas fa-dragon" style="font-weight: 900;font-size:28px;color:gray;opacity:0.5;"></p>
             </div>
           </div>
 
@@ -102,13 +102,13 @@
             <img th:if= "${post.multimedia.encoded64 != ''}" th:src="@{'data:image/jpeg;base64,'+${post.multimedia.encoded64}}" alt="Post">
             <img th:unless="${post.multimedia.encoded64 != ''}" src="/images/no-image.svg">
             <div th:switch="${post.categoria.displayValue}" class="icono-encima">
-              <p th:case="'Música'" class='fas fa-headphones' style="font-size:28px;color:gray;opacity:0.5;"></p>
-              <p th:case="'Fotografía'" class="fas fa-camera" style="font-size:28px;color:gray;opacity:0.5;"></p>
-              <p th:case="'Cine/Video'" class='fas fa-video' style="font-size:28px;color:gray;opacity:0.5;"></p>
-              <p th:case="'Iluminación'" class="fas fa-lightbulb" style="font-size:28px;color:gray;opacity:0.5;"></p>
-              <p th:case="'Guión'" class="fas fa-file-alt" style="font-size:28px;color:gray;opacity:0.5;"></p>
-              <p th:case="'Animación'" class="fas fa-dragon" style="font-size:28px;color:gray;opacity:0.5;"></p>
-              <p th:case="*" class="fas fa-dragon" style="font-size:28px;color:gray;opacity:0.5;"></p>
+              <p th:case="'Música'" class='fas fa-headphones' style="font-weight: 900;font-size:28px;color:gray;opacity:0.5;"></p>
+              <p th:case="'Fotografía'" class="fas fa-camera" style="font-weight: 900;font-size:28px;color:gray;opacity:0.5;"></p>
+              <p th:case="'Cine/Video'" class='fas fa-video' style="font-weight: 900;font-size:28px;color:gray;opacity:0.5;"></p>
+              <p th:case="'Iluminación'" class="fas fa-lightbulb" style="font-weight: 900;font-size:28px;color:gray;opacity:0.5;"></p>
+              <p th:case="'Guión'" class="fas fa-file-alt" style="font-weight: 900;font-size:28px;color:gray;opacity:0.5;"></p>
+              <p th:case="'Animación'" class="fas fa-dragon" style="font-weight: 900;font-size:28px;color:gray;opacity:0.5;"></p>
+              <p th:case="*" class="fas fa-dragon" style="font-weight: 900;font-size:28px;color:gray;opacity:0.5;"></p>
             </div>
           </div>
           <h3 th:text="${post.titulo}"></h3>
@@ -123,7 +123,7 @@
       <div class="footer-top wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
         <div class="container text-center">
           <div class="footer-logo">
-            <a href="index.html"><img class="img-responsive" src="/images/Logo-Meetdia.png" height="40px" alt="Logo meetia"></a>
+            <a href="index.html"><img class="img-responsive" src="/images/Logo-Meetdia.png" height="40px" alt="Logo"></a>
           </div>
           <div class="social-icons">
             <ul>
@@ -140,20 +140,28 @@
     </footer>
   </body>
 
-  <!-- <script src='https://kit.fontawesome.com/a076d05399.js'></script> -->
-  <script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
-  <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<!--   <script type="text/javascript" src="/js/jquery-3.4.1.js"></script>
   <script type="text/javascript" src="/js/jquery.inview.min.js"></script>
   <script type="text/javascript" src="/js/wow.min.js"></script>
   <script type="text/javascript" src="/js/mousescroll.js"></script>
   <script type="text/javascript" src="/js/smoothscroll.js"></script>
   <script type="text/javascript" src="/js/jquery.countTo.js"></script>
-  <script type="text/javascript" src="/js/lightbox.min.js"></script>
+  <script type="text/javascript" src="/js/lightbox.min.js"></script> -->
+  <!-- <script src='/js/popper.min.js'></script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
+  <!-- <script type="text/javascript" src="/js/bootstrap.min.js"></script> -->
   <script type="text/javascript" src="/js/main.js"></script>
-  <script src='/js/all.js'></script>
+
   <!-- Optional JavaScript -->
-  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src='/js/popper.min.js'></script>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
- -->
+  <script src="https://kit.fontawesome.com/7a91d38e5f.js" crossorigin="anonymous"></script>
+  <!-- <script src='/js/all.js'></script> -->
+  <!--   <script src='/js/brands.js'></script> -->
+  <!--   <script src='/js/solid.js'></script> -->
+  <!-- <script src='/js/fontawesome.js'></script> -->
+  
+
   </html>
