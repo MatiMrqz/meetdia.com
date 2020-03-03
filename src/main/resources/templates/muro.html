@@ -81,13 +81,13 @@
             <img th:if= "${post.multimedia.encoded64 != ''}" th:src="@{'data:image/jpeg;base64,'+${post.multimedia.encoded64}}" alt="Post">
             <img th:unless="${post.multimedia.encoded64 != ''}" src="/images/no-image.svg">
             <div th:switch="${post.categoria.displayValue}" class="icono-encima">
-              <p th:case="'Música'" class='fas fa-headphones' style="font-size:28px;color:lightgray;"></p>
-              <p th:case="'Fotografía'" class="fas fa-camera" style="font-size:28px;color:lightgray;"></p>
-              <p th:case="'Cine/Video'" class='fas fa-video' style="font-size:28px;color:lightgray;"></p>
-              <p th:case="'Iluminación'" class="fas fa-lightbulb" style="font-size:28px;color:lightgray;"></p>
-              <p th:case="'Guión'" class="fas fa-file-alt" style="font-size:28px;color:lightgray;"></p>
-              <p th:case="'Animación'" class="fas fa-dragon" style="font-size:28px;color:lightgray;"></p>
-              <p th:case="*" class="fas fa-dragon" style="font-size:28px;color:lightgray;"></p>
+              <p th:case="'Música'" class='fas fa-headphones' style="font-size:28px;color:gray;opacity:0.5;"></p>
+              <p th:case="'Fotografía'" class="fas fa-camera" style="font-size:28px;color:gray;opacity:0.5;"></p>
+              <p th:case="'Cine/Video'" class='fas fa-video' style="font-size:28px;color:gray;opacity:0.5;"></p>
+              <p th:case="'Iluminación'" class="fas fa-lightbulb" style="font-size:28px;color:gray;opacity:0.5;"></p>
+              <p th:case="'Guión'" class="fas fa-file-alt" style="font-size:28px;color:gray;opacity:0.5;"></p>
+              <p th:case="'Animación'" class="fas fa-dragon" style="font-size:28px;color:gray;opacity:0.5;"></p>
+              <p th:case="*" class="fas fa-dragon" style="font-size:28px;color:gray;opacity:0.5;"></p>
             </div>
           </div>
 
@@ -102,13 +102,13 @@
             <img th:if= "${post.multimedia.encoded64 != ''}" th:src="@{'data:image/jpeg;base64,'+${post.multimedia.encoded64}}" alt="Post">
             <img th:unless="${post.multimedia.encoded64 != ''}" src="/images/no-image.svg">
             <div th:switch="${post.categoria.displayValue}" class="icono-encima">
-              <p th:case="'Música'" class='fas fa-headphones' style="font-size:28px;color:lightgray;"></p>
-              <p th:case="'Fotografía'" class="fas fa-camera" style="font-size:28px;color:lightgray;"></p>
-              <p th:case="'Cine/Video'" class='fas fa-video' style="font-size:28px;color:lightgray;"></p>
-              <p th:case="'Iluminación'" class="fas fa-lightbulb" style="font-size:28px;color:lightgray;"></p>
-              <p th:case="'Guión'" class="fas fa-file-alt" style="font-size:28px;color:lightgray;"></p>
-              <p th:case="'Animación'" class="fas fa-dragon" style="font-size:28px;color:lightgray;"></p>
-              <p th:case="*" class="fas fa-dragon" style="font-size:28px;color:lightgray;"></p>
+              <p th:case="'Música'" class='fas fa-headphones' style="font-size:28px;color:gray;opacity:0.5;"></p>
+              <p th:case="'Fotografía'" class="fas fa-camera" style="font-size:28px;color:gray;opacity:0.5;"></p>
+              <p th:case="'Cine/Video'" class='fas fa-video' style="font-size:28px;color:gray;opacity:0.5;"></p>
+              <p th:case="'Iluminación'" class="fas fa-lightbulb" style="font-size:28px;color:gray;opacity:0.5;"></p>
+              <p th:case="'Guión'" class="fas fa-file-alt" style="font-size:28px;color:gray;opacity:0.5;"></p>
+              <p th:case="'Animación'" class="fas fa-dragon" style="font-size:28px;color:gray;opacity:0.5;"></p>
+              <p th:case="*" class="fas fa-dragon" style="font-size:28px;color:gray;opacity:0.5;"></p>
             </div>
           </div>
           <h3 th:text="${post.titulo}"></h3>
