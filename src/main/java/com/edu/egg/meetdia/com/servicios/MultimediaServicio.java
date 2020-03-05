@@ -9,7 +9,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.edu.egg.meetdia.com.enumeraciones.Tipo;
 import com.edu.egg.meetdia.com.errores.ErrorServicio;
 import com.edu.egg.meetdia.com.repositorios.MultimediaRepositorio;
+import java.io.IOException;
 import java.util.Base64;
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -37,11 +39,35 @@ public class MultimediaServicio {
                 System.out.println(e.getMessage());
             }
         }
-            System.out.println("No hubo multimedia");
-            return null;
+        System.out.println("No hubo multimedia");
+        return null;
     }
-	
-	
+
+    @Transactional
+    public Multimedia actualizar(MultipartFile archivo, String id) throws ErrorServicio {
+        Optional<Multimedia> respuesta = multimediaRepositorio.findById(id);
+        if (respuesta.isPresent()) {
+            Multimedia multimedia = respuesta.get();
+            if (archivo != null) {
+                try {
+                    multimedia.setMime(archivo.getContentType());
+                    multimedia.setNombre(archivo.getName());
+                    multimedia.setContenidoMultimedia(archivo.getBytes());
+                    multimedia.setTipo(tipoDeArchivo(archivo));
+                    multimedia.setEncoded64(Base64.getEncoder().encodeToString(archivo.getBytes()));
+                    multimediaRepositorio.save(multimedia);
+                    return multimedia;
+                } catch (IOException ex) {
+                    System.out.println(ex.getMessage());
+                }
+            }else{
+                return multimedia;
+            }
+        }else{
+            throw new ErrorServicio("No se encuentra el archivo multimedia");
+        }
+        return null;
+    }
 
     private Tipo tipoDeArchivo(MultipartFile archivo) {
 

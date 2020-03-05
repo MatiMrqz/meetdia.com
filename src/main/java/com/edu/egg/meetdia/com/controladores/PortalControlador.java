@@ -95,6 +95,8 @@ public class PortalControlador {
 
         modelo.put("titulo", "Bienvenido a meetdia.com");
         modelo.put("descripcion", "Revisa tu email para verificar tu cuenta");
+        modelo.put("url_retorno","/");
+        modelo.put("boton","Inicio");
         return "exito.html";
     }
 
@@ -109,10 +111,14 @@ public class PortalControlador {
                         + ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString() +"/change-password/"+ confirmationToken.getConfirmationToken());
                 modelo.put("titulo", "Hemos enviado un link a tu mail");
                 modelo.put("descripcion", "Revisa tu casilla para continuar");
+                modelo.put("url_retorno", "/");
+                modelo.put("boton", "Inicio");
                 return "exito.html";
             }else{
                 modelo.put("titulo", "Error");
                 modelo.put("descripcion", "No se encontró el usuario");
+                modelo.put("url_retorno","/forgot");
+                modelo.put("boton","Volver");
                 return "exito.html";
             }
         }
@@ -128,8 +134,10 @@ public class PortalControlador {
         } else {
             modelo.put("titulo", "Error");
             modelo.put("descripcion", "Link inválido o incorrecto, intente nuevamente");
+            modelo.put("url_retorno","/forgot");
+            modelo.put("boton", "Enviar mail de nuevo");
+            return "exito.html";
         }
-        return "exito.html";
     }
 
     @PostMapping(value = {"/change-password"})
@@ -141,33 +149,12 @@ public class PortalControlador {
             confirmationTokenRepositorio.save(Actoken);
             modelo.put("titulo", "Cambio correcto!");
             modelo.put("descripcion", "La contraseña ha sido cambiada correctamente. Puede iniciar sesión.");
+            modelo.put("url_retorno", "/login");
+            modelo.put("boton","Iniciar Sesión");
             return "exito.html";
         } catch (ErrorServicio ex) {
             modelo.put("error", ex.getMessage());
             return "forward:/change-password/"+token;
         }
     }
-//    @PreAuthorize("hasAnyRole( 'ROLE_USUARIO_REGISTRADO' )")
-//    @GetMapping(value = {"/muro"})
-//    public String muro(ModelMap modelo) {
-//        List<Post> listaPost = postRepositorio.mostrarUltimosPost();
-//        modelo.addAttribute("listapost", listaPost);
-//        return "muro.html";
-//    }
-//    public String post_Nuevo(ModelMap modelo,MultipartFile archivo,@RequestParam String titulo, @RequestParam String descripcion, @RequestParam Categoria categoria, @RequestParam String idPersona)throws ErrorServicio{
-//        try{
-//        postServicio.nuevoPost(titulo,descripcion,idPersona,archivo,categoria);
-//        } catch (ErrorServicio ex){
-//        modelo.put("error", ex.getMessage());
-//        modelo.put("titulo", titulo);
-//        modelo.put("descripcion",descripcion);
-//        modelo.put("idPersona", idPersona);
-//        modelo.put("categoria", categoria);
-//        
-//        }
-//        
-//        modelo.put("titulo","Pa que posteas eso pendejo");
-//        modelo.put("descripcion","queweaconlavide");
-//        return "nuevoPost.html";
-//    }
 }
