@@ -23,7 +23,7 @@ public class MultimediaServicio {
     @Transactional
     public Multimedia guardar(MultipartFile archivo) throws ErrorServicio {
 
-        if (archivo != null) {
+        if (!archivo.isEmpty()) {
             try {
                 System.out.println("Guardando archivo...");
                 Multimedia multimedia = new Multimedia();
@@ -48,8 +48,9 @@ public class MultimediaServicio {
         Optional<Multimedia> respuesta = multimediaRepositorio.findById(id);
         if (respuesta.isPresent()) {
             Multimedia multimedia = respuesta.get();
-            if (archivo != null) {
+            if (!archivo.isEmpty()) {
                 try {
+                    System.out.println("Cambiando imagen");
                     multimedia.setMime(archivo.getContentType());
                     multimedia.setNombre(archivo.getName());
                     multimedia.setContenidoMultimedia(archivo.getBytes());
