@@ -110,8 +110,9 @@ public class MuroControlador {
             modelo.put("titulo", titulo);
             modelo.put("descripcion", descripcion);
             modelo.put("check_value", busco);
-            modelo.put("url_success","/muro/publicar");
-            modelo.put("boton","Publicar");
+            modelo.put("id_post", id_post);
+            modelo.put("url_success","/muro/modificar_post");
+            modelo.put("boton","Guardar");
             return "nuevo_post.html";
         }
     }
