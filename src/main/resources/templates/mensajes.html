@@ -16,6 +16,7 @@
 
 
 		<!--Hojas de estilo-->
+        <link href="/css/indexCSS_navbar.css" rel="stylesheet">
 		<link href="/css/indexCSS.css" rel="stylesheet">
 		<link href="/css/responsive.css" rel="stylesheet">
 		<link href="/css/buzonv2.css" rel="stylesheet">
@@ -26,36 +27,32 @@
 
 	</head>
 	<body>
-		<header>
-			<div class="container-fluid" style="background-color: #9ACD32;">
-        <div class="container">
-        <nav class="navbar navbarcolor navbar-expand-md navbar-dark">
-            <a class="navbar-brand  ml-3" href="#">
+ <header>
+       <nav class="navbar navbarcolor navbar-expand-md navbar-dark">
+            <a class="navbar-brand  ml-3" href="/muro">
+             <img src="/images/meetlogo.png" width="45" height="45" class="d-inline-block align-top" alt="meetdia.com">
 
-                <img src="/images/Logo-Meetdia.png" width="45" height="45" class="d-inline-block align-top" alt="meetdia.com">
+          <spam class="class-list2"></spam>
                 
             </a>
 
-            <a class="navbar-brand letra pt-4"  href="#">
+            <a class="navbar-brand letra pt-4 nu"  href="/muro">
                 Meetdia.com
             </a>
 
             <button class="navbar-toggler" style="border-color: white;" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <img src="images/navbar2.svg" width="45" height="45" class="d-inline-block align-top" alt="meetdia.com">
+               <span class='fas fa-align-justify'></span>
             </button>
 
             <div class="collapse navbar-collapse row" id="navbarSupportedContent">
 
-        <ul class="navbar-nav auto col-4">
+        <ul >
 
            <li class="nav-item active">
             <li class="nav-item n">
-                <a href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a href="/perfil" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-child" style="font-size:25px;color:white;text-shadow: 2px 2px 4px #728781"></i>
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <p class="p" href="/muro/nuevo-post">Perfil</p>
-                </div>
             </li> 
             </li> 
 
@@ -63,34 +60,20 @@
 
             <li class="nav-item active">
             <li class="nav-item n">
-                <a href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a href="/muro/nuevo-post" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 <i class="fa fa-history" style="font-size:25px;color:white;text-shadow: 2px 2px 4px #728781"></i>
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <p class="p" href="/muro/nuevo-post">Publicar</p>
-                </div>
             </li> 
             </li>  
 
             <li class="nav-item active">
             <li class="nav-item n">
-                <a href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-comments-o" style="font-size:25px;color:white;text-shadow: 2px 2px 4px #728781"></i>
+                <a href="/logout" id="navbarDropdown" role="button" aria-haspopup="true">
+                <i class="fa fa-power-off"  style="font-size:25px;color:white;text-shadow: 2px 2px 4px #728781"></i>
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <p class="p" href="/muro/nuevo-post">Mensaje</p>
-                </div>
-            </li> 
-            </li> 
-
-            <li class="nav-item active">
-            <li class="nav-item n">
-                <a href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fa fa-power-off" style="font-size:25px;color:white;text-shadow: 2px 2px 4px #728781"></i>
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <p class="p" href="/muro/nuevo-post">Apagar</p>
-                </div>
+                </div> -->
             </li> 
             </li> 
           
@@ -98,9 +81,8 @@
 
         </div>
         </nav>
-    </div>
-    </div>
-		</header>
+
+        </header>
 	<div class="col-md-8 con ">
 					<div class="card">
 						<div class="cartacon msg_head">

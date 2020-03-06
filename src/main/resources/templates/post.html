@@ -12,6 +12,7 @@
     <title>Post - Meetdia</title>
     
     <!-- Estilos Meetdia CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/indexCSS_navbar.css">
     <link rel="stylesheet" type="text/css" href="/css/indexCSS.css">
     <link rel="stylesheet" type="text/css" href="/css/footer.css">
     <!-- <link href="css/font-awesome.min.css" rel="stylesheet"> -->
@@ -31,51 +32,70 @@
 <body>
 
   <!-- Navbar -->
-  <header>
-    <div class="container-fluid" style="background-color: #9ACD32;">
-        <div class="container">
-          <nav class="navbar navbarcolor navbar-expand-md navbar-dark">
-            <a class="navbar-brand" href="/muro/">
-                <img src="/images/Logo-Meetdia.png" width="45" height="45" class="d-inline-block align-top" alt="meetdia.com">  
+   <header>
+       <nav class="navbar navbarcolor navbar-expand-md navbar-dark">
+            <a class="navbar-brand  ml-3" href="/muro">
+             <img src="/images/meetlogo.png" width="45" height="45" class="d-inline-block align-top" alt="meetdia.com">
+
+          <spam class="class-list2"></spam>
+                
             </a>
 
-            <a class="navbar-brand letra pt-4"  href="/muro/">
+            <a class="navbar-brand letra pt-4 nu"  href="/muro">
                 Meetdia.com
             </a>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler" style="border-color: white;" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+               <span class='fas fa-align-justify'></span>
             </button>
 
             <div class="collapse navbar-collapse row" id="navbarSupportedContent">
-                <ul class="navbar-nav m-auto col-4">
-                    <li class="nav-item active">
 
-                        <button class="btn bttcolor btn-xs my-1" type="submit">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle  letra2 text-white active" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Publicar
-                                </a>
+        <ul >
 
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#">Ofrecer Trabajo</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Buscar Trabajo</a>
-                                </div>
-                            </li>
-                        </button>
-                    </li>
-
-                </ul>
-                <a href="">
-                    <i class='far fa-comments' style="font-size:25px;color:white;text-shadow:2px 2px 4px #000000;"></i>
+           <li class="nav-item active">
+            <li class="nav-item n">
+                <a href="/perfil" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-child" style="font-size:25px;color:white;text-shadow: 2px 2px 4px #728781"></i>
                 </a>
-            </div>
-        </nav><!-- Navbar -->
-    </div>
-</div>
+            </li> 
+            </li> 
 
-</header>
+            </li> 
+
+            <li class="nav-item active">
+            <li class="nav-item n">
+                <a href="/muro/nuevo-post" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-history" style="font-size:25px;color:white;text-shadow: 2px 2px 4px #728781"></i>
+                </a>
+            </li> 
+            </li>  
+
+            <li class="nav-item active">
+            <li class="nav-item n">
+                <a href="/buzon" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-comments-o" style="font-size:25px;color:white;text-shadow: 2px 2px 4px #728781"></i>
+                </a>
+            </li> 
+            </li> 
+
+            <li class="nav-item active">
+            <li class="nav-item n">
+                <a href="/logout" id="navbarDropdown" role="button" aria-haspopup="true">
+                <i class="fa fa-power-off"  style="font-size:25px;color:white;text-shadow: 2px 2px 4px #728781"></i>
+                </a>
+                <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <p class="p" href="/muro/nuevo-post">Apagar</p>
+                </div> -->
+            </li> 
+            </li> 
+          
+        </ul>
+
+        </div>
+        </nav>
+
+        </header>
 
 <div class="container">
 
