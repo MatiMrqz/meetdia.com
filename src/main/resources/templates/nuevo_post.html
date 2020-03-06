@@ -123,8 +123,8 @@
                                             <textarea placeholder="Descripcion" class="form-control" name="descripcion" rows="5" cols="40" th:text="${descripcion}"></textarea>
                                         </br>
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="customFile" name="archivo">
-                                            <label class="custom-file-label" for="customFile">Comparte tu imagen, video o PDF</label>
+                                            <input type="file" class="custom-file-input" id="customFile" name="archivo" accept=".jpg,.png,.jpeg" on change="showname()">
+                                            <label id="filenamelabel" class="custom-file-label" for="customFile" enctype="multipart/form-data">Añade una imagen</label>
                                         </div>
                                         <div class="form-check">
                                             <input type="checkbox" class="form-check-input" name="busco_check" th:checked="${check_value}" value="1">
@@ -151,7 +151,11 @@
 </footer>
 
 
-
+<script type="text/javascript">
+    document.getElementById('customFile').onchange = function () {
+    document.getElementById("filenamelabel").innerHTML = this.files[0].name;
+    };
+</script>
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

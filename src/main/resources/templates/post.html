@@ -13,6 +13,7 @@
     
     <!-- Estilos Meetdia CSS -->
     <link rel="stylesheet" type="text/css" href="/css/indexCSS.css">
+    <link rel="stylesheet" type="text/css" href="/css/footer.css">
     <!-- <link href="css/font-awesome.min.css" rel="stylesheet"> -->
     <link rel="shortcut icon" href="/images/meetlogo.png">
 
@@ -21,6 +22,11 @@
             margin-top:-50px;
         }
     </style>
+    <script type="text/javascript">
+    function validarInput() {
+        document.getElementById("btn_Submit").disabled == document.getElementById("comments").value.length;
+    }
+    </script>
 </head>
 <body>
 
@@ -33,7 +39,7 @@
                 <img src="/images/Logo-Meetdia.png" width="45" height="45" class="d-inline-block align-top" alt="meetdia.com">  
             </a>
 
-            <a class="navbar-brand letra pt-4"  href="#">
+            <a class="navbar-brand letra pt-4"  href="/muro/">
                 Meetdia.com
             </a>
 
@@ -106,17 +112,19 @@
             <img th:if= "${image64 != ''}" th:src="@{'data:image/jpeg;base64,'+${image64}}" alt="Imagen" class="text-center img-fluid rounded mb-3" style="max-width:100%; height:auto;">
             <img th:unless="${image64 != ''}" src="/images/no-image.svg" alt="Imagen" class="text-center img-fluid rounded mb-3" style="max-width:100%; height:auto;">
         </div>
-
+        <form action="/buzon/nuevomensaje" method="POST">
         <div class="text-center">
-            <textarea placeholder="Comentarios" class="form-control" name="comentario" rows="5" cols="40" id="comments"></textarea>
+            <textarea th:placeholder="|Enviar mensaje a ${nickname}" class="form-control" name="contenido" rows="5" cols="40" id="comments"></textarea>
+            <input type="text" th:value="${id_personapost}" name="id_receptor" hidden>
         </div>
 
     </br>
 
     <div class="text-center">
         <a href="/muro/"><button class="btn btn-secondary" type="button">Volver</button></a>
-        <input class="btn btn-primary btn-success" type="submit" id="btn_Submit">Enviar</button>
+        <button class="btn btn-primary btn-success" type="submit" id="btn_Submit" oninput="validarInput()" >Enviar</button>
     </div>
+        </form>
 
 </div>
 </div>
@@ -124,10 +132,25 @@
 </div><!-- Artículos -->
 </div>
 </div>
-<footer class="bg-dark py-3 text-white container-fluid">
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis quia, culpa veritatis nihil atque natus, explicabo corrupti sed eius quidem velit laudantium provident accusantium distinctio impedit facere eos, consequatur sint.</p>
-</footer>
-
+<footer id="footer">
+            <div class="footer-top wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
+                <div class="container text-center">
+                    <div class="footer-logo">
+                        <a href="index.html"><img class="img-responsive" src="/images/Logo-Meetdia.png" height="40px" alt="Logo"></a>
+                    </div>
+           <!--          <div class="social-icons">
+                        <ul>
+                            <li><a class="envelope" href="#"><i class='far fa-star'></i></a></li>
+                            <li><a class="twitter" href="#"><i class='far fa-star'></i></a></li> 
+                            <li><a class="dribbble" href="#"><i class='far fa-star'></i></a></li>
+                            <li><a class="facebook" href="#"><i class='far fa-star'></i></a></li>
+                            <li><a class="linkedin" href="#"><i class='far fa-star'></i></a></li>
+                            <li><a class="tumblr" href="#"><i class='far fa-star'></i></a></li>
+                        </ul>
+                    </div>
+ -->                </div>
+            </div>
+        </footer>
 
 
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>

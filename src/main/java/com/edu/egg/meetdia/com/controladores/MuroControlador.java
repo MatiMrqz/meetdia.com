@@ -134,8 +134,9 @@ public class MuroControlador {
                 modelo.put("descripcion", post.getDescripcion());
                 modelo.put("categoria", post.getCategoria().getDisplayValue());
                 modelo.put("image64", post.getMultimedia().getEncoded64());
-                modelo.put("fecha", post.getFecha_publicacion().toString());
+                modelo.put("fecha", postServicio.getElapsedTime(post.getFecha_publicacion()));
                 modelo.put("nickname", post.getPersona().getNickname());
+                modelo.put("id_personapost",post.getPersona().getId());
                 modelo.put("profesion",post.getPersona().getProfesion());
                 modelo.put("avatar", post.getPersona().getMultimedia().getEncoded64());
                 return "post.html";

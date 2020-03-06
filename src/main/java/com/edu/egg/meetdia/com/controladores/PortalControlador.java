@@ -5,10 +5,8 @@ import com.edu.egg.meetdia.com.entidades.Persona;
 import com.edu.egg.meetdia.com.errores.ErrorServicio;
 import com.edu.egg.meetdia.com.repositorios.ConfirmationTokenRepositorio;
 import com.edu.egg.meetdia.com.repositorios.PersonaRepositorio;
-import com.edu.egg.meetdia.com.repositorios.PostRepositorio;
 import com.edu.egg.meetdia.com.servicios.EmailSenderService;
 import com.edu.egg.meetdia.com.servicios.PersonaServicio;
-import com.edu.egg.meetdia.com.servicios.PostServicio;
 import java.util.UUID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -59,8 +57,8 @@ public class PortalControlador {
             confirmationTokenRepositorio.save(Actoken);
             modelo.put("titulo", "Cuenta Verificada Correctamente!");
             modelo.put("descripcion", "Presione continuar");
-            modelo.put("url_retorno","/");
-            modelo.put("boton","Inicio");
+            modelo.put("url_retorno","/login");
+            modelo.put("boton","Iniciar Sesion");
         } else {
             modelo.put("titulo", "Error");
             modelo.put("descripcion", "Link inválido o incorrecto, intente nuevamente");

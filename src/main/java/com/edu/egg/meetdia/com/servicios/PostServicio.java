@@ -7,6 +7,7 @@ import com.edu.egg.meetdia.com.repositorios.PersonaRepositorio;
 import com.edu.egg.meetdia.com.repositorios.PostRepositorio;
 import java.util.Date;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,7 +38,7 @@ public class PostServicio {
         post.setBusco(busco);
         postRepositorio.save(post);
     }
-    
+
     @Transactional
     public void modificarPost(String titulo, String descripcion, MultipartFile archivo, String categoria, boolean busco, String idPost) throws ErrorServicio {
         validar(titulo, descripcion, categoria);
@@ -46,7 +47,7 @@ public class PostServicio {
             Post post = respuesta.get();
             post.setTitulo(titulo);
             post.setDescripcion(descripcion);
-            post.setMultimedia(ms.actualizar(archivo,post.getMultimedia().getId()));
+            post.setMultimedia(ms.actualizar(archivo, post.getMultimedia().getId()));
             post.setCategoria(Categoria.valueOf(categoria));
             post.setBusco(busco);
             postRepositorio.save(post);
@@ -64,5 +65,27 @@ public class PostServicio {
         if (categoria == null || categoria.isEmpty()) {
             throw new ErrorServicio("La categoria debe ser seleccionada");
         }
+    }
+
+    public String getElapsedTime(Date created) {
+        long duration = System.currentTimeMillis() - created.getTime();
+        long seconds = TimeUnit.MILLISECONDS.toSeconds(duration);
+        long days = TimeUnit.MILLISECONDS.toDays(duration);
+        long hours = TimeUnit.MILLISECONDS.toHours(duration);
+        long minutes = TimeUnit.MILLISECONDS.toMinutes(duration);
+        if (days > 0) {
+            return "Hace " + days + " dias";
+        }
+        if (hours > 0) {
+            return "Hace " + hours + " horas";
+        }
+        if (minutes > 0) {
+            return "Hace " + minutes + " minutos";
+        }
+
+        if (seconds > 0) {
+            return "Hace " + seconds + " segundos";
+        }
+        return "error en elapsedtime";
     }
 }

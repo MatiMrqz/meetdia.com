@@ -1,21 +1,30 @@
     <!doctype html>
     <html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-      <head>
+    <head>
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <title>Meetdia</title>
 
-        <title>Titulo</title>
+        <!-- Hojas de estilo  -->
+        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/css/animate.min.css" rel="stylesheet"> 
+        <link href="/css/font-awesome.min.css" rel="stylesheet">
+        <link href="/css/lightbox.css" rel="stylesheet">
+        <link href="/css/buzon.css" rel="stylesheet">
+        <link id="/css-preset" href="/css/presets/preset1.css" rel="stylesheet">
+        <link href="/css/responsive.css" rel="stylesheet">
+        <link href="/css/indexCSS.css" rel="stylesheet">
+        <link href="/css/estilos.css" rel="stylesheet">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/estilos.css">
+        <link rel="stylesheet" href="/css/footer.css">
+        <link rel="shortcut icon" href="/images/meetlogo.png">
 
-        <link rel="stylesheet" type="text/css" href="/css/indexCSS.css">
-
-      </head>
-      <body>
-
-           
+    </head>
+    <body margin-top="100px" id="contacto-id" class="parallax">  
+        <section>
             <div class="text-center mx-auto" href="#" style="width: 200px">
 
                 <h2 th:text="${titulo}" ></h2>
@@ -23,17 +32,35 @@
 
             </div>
         </div>
-
-        <div class="container">
-        <button type="button" class="btn bttcolor btn-lg btn-block"><a class="ref" href="/">Inicio</a></button>
+         <div class="container">
+        <button type="button" class="btn bttcolor btn-lg btn-block"><a class="ref" th:href="${url_retorno}" th:text="${boton}">Inicio</a></button>
         </div>
 
-        
+    </section>
+    <footer id="footer">
+        <div class="footer-top wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
+          <div class="container text-center">
+            <div class="footer-logo">
+              <a href="index.html"><img class="img-responsive" src="/img/Logo-Meetdia.png" height="40px" alt="Logo meetdia"></a>
+          </div>
+          <div class="social-icons">
+                     <!-- <ul>
+                        <li><a class="envelope" href="#"><i class='far fa-star'></i></a></li>
+                        <li><a class="twitter" href="#"><i class='far fa-star'></i></a></li> 
+                        <li><a class="dribbble" href="#"><i class='far fa-star'></i></a></li>
+                        <li><a class="facebook" href="#"><i class='far fa-star'></i></a></li>
+                        <li><a class="linkedin" href="#"><i class='far fa-star'></i></a></li>
+                        <li><a class="tumblr" href="#"><i class='far fa-star'></i></a></li>
+                    </ul>-->
+                </div>
+            </div>
+        </div>
+    </footer>
 
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="js/bootstrap.min.js"></script>
-      </body>
-    </html>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>

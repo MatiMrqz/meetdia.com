@@ -38,8 +38,17 @@ public class MultimediaServicio {
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
+        } else {
+            System.out.println("No hubo multimedia");
+            Multimedia multimedia = new Multimedia();
+            multimedia.setMime(null);
+            multimedia.setNombre(null);
+            multimedia.setContenidoMultimedia(null);
+            multimedia.setTipo(null);
+            multimedia.setEncoded64("");
+            multimediaRepositorio.save(multimedia);
+            return multimedia;
         }
-        System.out.println("No hubo multimedia");
         return null;
     }
 
@@ -61,10 +70,10 @@ public class MultimediaServicio {
                 } catch (IOException ex) {
                     System.out.println(ex.getMessage());
                 }
-            }else{
+            } else {
                 return multimedia;
             }
-        }else{
+        } else {
             throw new ErrorServicio("No se encuentra el archivo multimedia");
         }
         return null;
