@@ -5,6 +5,8 @@ spring:
     properties:
         mail:
             smtp:
+                ssl:
+                    trust: smtp.gmail.com
                 auth: true
                 starttls:
                     required: true

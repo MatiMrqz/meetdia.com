@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Buzon</title>
+	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
+	<script type="text/javascript" src="/js/buzonv2.js"></script>
+
+
+	<!--Hojas de estilo-->
+	<link href="/css/indexCSS_navbar.css" rel="stylesheet">
+	<link href="/css/indexCSS.css" rel="stylesheet">
+	<link href="/css/responsive.css" rel="stylesheet">
+	<link href="/css/buzonv2.css" rel="stylesheet">
+	<link href="/css/footer.css" rel="stylesheet">
+</head>
+<!--Coded With Love By Mutiullah Samim-->
+<body>
+ <header>
+       <nav class="navbar navbarcolor navbar-expand-md navbar-dark">
+            <a class="navbar-brand  ml-3" href="/muro">
+             <img src="/images/meetlogo.png" width="45" height="45" class="d-inline-block align-top" alt="meetdia.com">
+
+          <spam class="class-list2"></spam>
+                
+            </a>
+
+            <a class="navbar-brand letra pt-4 nu"  href="/muro">
+                Meetdia.com
+            </a>
+
+            <button class="navbar-toggler" style="border-color: white;" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+               <span class='fas fa-align-justify'></span>
+            </button>
+
+            <div class="collapse navbar-collapse row" id="navbarSupportedContent">
+
+        <ul >
+
+           <li class="nav-item active">
+            <li class="nav-item n">
+                <a href="/perfil" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-child" style="font-size:25px;color:white;text-shadow: 2px 2px 4px #728781"></i>
+                </a>
+            </li> 
+            </li> 
+
+            </li> 
+
+            <li class="nav-item active">
+            <li class="nav-item n">
+                <a href="/muro/nuevo-post" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-history" style="font-size:25px;color:white;text-shadow: 2px 2px 4px #728781"></i>
+                </a>
+            </li> 
+            </li>  
+
+            <li class="nav-item active">
+            <li class="nav-item n">
+                <a href="/logout" id="navbarDropdown" role="button" aria-haspopup="true">
+                <i class="fa fa-power-off"  style="font-size:25px;color:white;text-shadow: 2px 2px 4px #728781"></i>
+                </a>
+                <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <p class="p" href="/muro/nuevo-post">Apagar</p>
+                </div> -->
+            </li> 
+            </li> 
+          
+        </ul>
+
+        </div>
+        </nav>
+
+        </header>
+		<div class="container-fluid h-100">
+			<div class="row justify-content-center h-100">
+				<!-- Esto es lo que modifica las columnas-->
+				<div class="col-md-8 con chat"><div class="card mb-sm-3 mb-md-0 contacts_card">
+					<div class="card-header">
+						<div class="input-group">
+							<input type="text" placeholder="Search..." name="" class="form-control search">
+							<div class="input-group-prepend">
+								<span class="input-group-text search_btn"><i class="fas fa-search"></i></span>
+							</div>
+						</div>
+					</div>
+					<!-- <div th:each="user:${lista_chats}"> -->
+						<div class="card-body contacts_body">
+							<ui th:each="user:${lista_chats}" class="contacts">
+								<a th:href="@{/buzon/ver_mas/{more}(more=${user.id})}">
+									<li class="active">
+									<div class="d-flex bd-highlight">
+										<div class="img_cont">
+											<img th:if= "${user.multimedia.encoded64 != ''}" th:src="@{'data:image/jpeg;base64,'+${user.multimedia.encoded64}}" class="rounded-circle user_img">
+											<img th:unless="${user.multimedia.encoded64 != ''}" src="/images/no-image.svg" class="rounded-circle user_img">
+											<!-- <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img"> -->
+										</div>
+										<div class="user_info">
+											<span th:text="${user.nickname}">Meetdia</span>
+										</div>
+									</div>
+								</li>
+							</a>
+							</ui>
+						</div>
+					<!-- </div> -->
+					<div class="card-footer"></div>
+				</div>
+			</div>
+		</body>
+		</html>

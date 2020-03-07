@@ -1,0 +1,161 @@
+				
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
+<html>
+<head>
+		<title>Mensaje</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.js"></script>
+
+
+		<!--Hojas de estilo-->
+        <link href="/css/indexCSS_navbar.css" rel="stylesheet">
+		<link href="/css/indexCSS.css" rel="stylesheet">
+		<link href="/css/responsive.css" rel="stylesheet">
+		<link href="/css/buzonv2.css" rel="stylesheet">
+		<link href="/css/footer.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="/css/indexCSS.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+	</head>
+	<body>
+ <header>
+       <nav class="navbar navbarcolor navbar-expand-md navbar-dark">
+            <a class="navbar-brand  ml-3" href="/muro">
+             <img src="/images/meetlogo.png" width="45" height="45" class="d-inline-block align-top" alt="meetdia.com">
+
+          <spam class="class-list2"></spam>
+                
+            </a>
+
+            <a class="navbar-brand letra pt-4 nu"  href="/muro">
+                Meetdia.com
+            </a>
+
+            <button class="navbar-toggler" style="border-color: white;" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+               <span class='fas fa-align-justify'></span>
+            </button>
+
+            <div class="collapse navbar-collapse row" id="navbarSupportedContent">
+
+        <ul >
+
+           <li class="nav-item active">
+            <li class="nav-item n">
+                <a href="/perfil" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-child" style="font-size:25px;color:white;text-shadow: 2px 2px 4px #728781"></i>
+                </a>
+            </li> 
+            </li> 
+
+            </li> 
+
+            <li class="nav-item active">
+            <li class="nav-item n">
+                <a href="/muro/nuevo-post" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-history" style="font-size:25px;color:white;text-shadow: 2px 2px 4px #728781"></i>
+                </a>
+            </li> 
+            </li>  
+
+            <li class="nav-item active">
+            <li class="nav-item n">
+                <a href="/logout" id="navbarDropdown" role="button" aria-haspopup="true">
+                <i class="fa fa-power-off"  style="font-size:25px;color:white;text-shadow: 2px 2px 4px #728781"></i>
+                </a>
+                <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <p class="p" href="/muro/nuevo-post">Apagar</p>
+                </div> -->
+            </li> 
+            </li> 
+          
+        </ul>
+
+        </div>
+        </nav>
+
+        </header>
+	<div class="col-md-8 con ">
+					<div class="card">
+						<div class="cartacon msg_head">
+							<div class="d-flex bd-highlight">
+								<div class="img_cont">
+									<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
+								</div>
+								<div class="user_info">
+									<span th:if="${listamsj[0].receptor.id!=session.Usuariosession.id}" th:text="|Chat con ${listamsj[0].receptor.nickname}|">Vista de chat</span>
+                                    <span th:if="${listamsj[0].receptor.id==session.Usuariosession.id}" th:text="|Chat con ${listamsj[0].emisor.nickname}|">Vista de chat</span>
+									<p th:text="|${#lists.size(listamsj)} mensajes|">1767 Messages</p>
+								</div>
+							</div>
+						</div>
+						<div class="card-body msg_card_body">
+                            <div th:each= "mensaje : ${listamsj}">
+                            <!-- Mensaje recibido -->
+
+                            <div th:if ="${mensaje.emisor.id != session.Usuariosession.id}" class="d-flex justify-content-start mb-4">
+                                <div class="img_cont_msg">
+                                    <img th:if= "${mensaje.emisor.multimedia.encoded64 != ''}" th:src="@{'data:image/jpeg;base64,'+${mensaje.emisor.multimedia.encoded64}}" class="rounded-circle user_img_msg">
+                                    <img th:unless="${mensaje.emisor.multimedia.encoded64 != ''}" src="/images/no-image.svg" class="rounded-circle user_img_msg">
+                                    <!-- <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg"> -->
+                                </div>
+                                <div class="msg_cotainer">
+                                    <p th:text="${mensaje.contenido}">
+                                    Hi, how are you samim?</p>
+                                    <span class="msg_time">8:40 AM, Today</span>
+                                </div>
+                            </div>
+
+                            <div th:if ="${mensaje.emisor.id == session.Usuariosession.id}" class="d-flex justify-content-end mb-4">
+                                <div class="msg_cotainer_send">
+                                    <p th:text="${mensaje.contenido}">
+                                    Hi Khalid i am good tnx how about you?
+                                    <span class="msg_time_send">8:55 AM, Today</span>
+                                </div>
+                                <div class="img_cont_msg">
+                                    <img th:if= "${mensaje.emisor.multimedia.encoded64 != ''}" th:src="@{'data:image/jpeg;base64,'+${mensaje.emisor.multimedia.encoded64}}" class="rounded-circle user_img_msg">
+                                    <img th:unless="${mensaje.emisor.multimedia.encoded64 != ''}" src="/images/no-image.svg" class="rounded-circle user_img_msg">
+                                    <!-- <img src="" class="rounded-circle user_img_msg"> -->
+                                </div>
+                            </div>
+                        </div>
+						</div>
+                        <form action="/buzon/nuevomensaje" method="POST">
+						<div class="card-footer">
+							<div class="input-group">
+                                
+								<div class="input-group-append">
+									<span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
+								</div>
+								<textarea name="contenido" class="form-control type_msg" placeholder="Escribe su mensaje..."></textarea>
+                                <input type="text" name="id_receptor" hidden th:value="${listamsj[0].receptor.id==session.Usuariosession.id}? ${listamsj[0].emisor.id}:${listamsj[0].receptor.id}">
+								<div class="input-group-append">
+									<input type="submit" class="input-group-text send_btn"></i>
+								</div>
+                            
+							</div>
+						</div>
+                    </form>
+					</div>
+				</div>
+			</div>
+		</div>
+		    <footer id="footer">
+      		<div class="footer-top wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
+        	<div class="container text-center">
+          	<div class="footer-logo">
+            <a href="index.html"><img class="img-responsive" src="/images/Logo-Meetdia.png" height="40px" alt="Logo"></a>
+          	</div>
+        	</div>
+      		</div>
+      		</footer>
+      		</body>
+      		</html>

@@ -2,21 +2,13 @@ package com.edu.egg.meetdia.com.controladores;
 
 import com.edu.egg.meetdia.com.entidades.ConfirmationToken;
 import com.edu.egg.meetdia.com.entidades.Persona;
-import com.edu.egg.meetdia.com.entidades.Post;
-import com.edu.egg.meetdia.com.enumeraciones.Categoria;
 import com.edu.egg.meetdia.com.errores.ErrorServicio;
 import com.edu.egg.meetdia.com.repositorios.ConfirmationTokenRepositorio;
 import com.edu.egg.meetdia.com.repositorios.PersonaRepositorio;
-import com.edu.egg.meetdia.com.repositorios.PostRepositorio;
 import com.edu.egg.meetdia.com.servicios.EmailSenderService;
 import com.edu.egg.meetdia.com.servicios.PersonaServicio;
-import com.edu.egg.meetdia.com.servicios.PostServicio;
-import java.util.List;
 import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,16 +30,10 @@ public class PortalControlador {
     private PersonaRepositorio personaRepositorio;
 
     @Autowired
-    private PostRepositorio postRepositorio;
-
-    @Autowired
     private EmailSenderService emailSenderService;
 
     @Autowired
     private ConfirmationTokenRepositorio confirmationTokenRepositorio;
-
-    @Autowired
-    private PostServicio postServicio;
 
     @GetMapping(value = {""})
     public String inicio() {
@@ -71,11 +57,15 @@ public class PortalControlador {
             confirmationTokenRepositorio.save(Actoken);
             modelo.put("titulo", "Cuenta Verificada Correctamente!");
             modelo.put("descripcion", "Presione continuar");
+            modelo.put("url_retorno","/login");
+            modelo.put("boton","Iniciar Sesion");
         } else {
             modelo.put("titulo", "Error");
             modelo.put("descripcion", "Link inválido o incorrecto, intente nuevamente");
+            modelo.put("url_retorno","/");
+            modelo.put("boton","Inicio");
         }
-        return "confirm-account.html";
+        return "exito.html";
     }
 
     @PostMapping(value = {"/registrar"})
@@ -95,6 +85,8 @@ public class PortalControlador {
 
         modelo.put("titulo", "Bienvenido a meetdia.com");
         modelo.put("descripcion", "Revisa tu email para verificar tu cuenta");
+        modelo.put("url_retorno","/");
+        modelo.put("boton","Inicio");
         return "exito.html";
     }
 
@@ -109,10 +101,14 @@ public class PortalControlador {
                         + ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString() +"/change-password/"+ confirmationToken.getConfirmationToken());
                 modelo.put("titulo", "Hemos enviado un link a tu mail");
                 modelo.put("descripcion", "Revisa tu casilla para continuar");
+                modelo.put("url_retorno", "/");
+                modelo.put("boton", "Inicio");
                 return "exito.html";
             }else{
                 modelo.put("titulo", "Error");
                 modelo.put("descripcion", "No se encontró el usuario");
+                modelo.put("url_retorno","/forgot");
+                modelo.put("boton","Volver");
                 return "exito.html";
             }
         }
@@ -128,8 +124,10 @@ public class PortalControlador {
         } else {
             modelo.put("titulo", "Error");
             modelo.put("descripcion", "Link inválido o incorrecto, intente nuevamente");
+            modelo.put("url_retorno","/forgot");
+            modelo.put("boton", "Enviar mail de nuevo");
+            return "exito.html";
         }
-        return "exito.html";
     }
 
     @PostMapping(value = {"/change-password"})
@@ -141,33 +139,12 @@ public class PortalControlador {
             confirmationTokenRepositorio.save(Actoken);
             modelo.put("titulo", "Cambio correcto!");
             modelo.put("descripcion", "La contraseña ha sido cambiada correctamente. Puede iniciar sesión.");
+            modelo.put("url_retorno", "/login");
+            modelo.put("boton","Iniciar Sesión");
             return "exito.html";
         } catch (ErrorServicio ex) {
             modelo.put("error", ex.getMessage());
             return "forward:/change-password/"+token;
         }
     }
-//    @PreAuthorize("hasAnyRole( 'ROLE_USUARIO_REGISTRADO' )")
-//    @GetMapping(value = {"/muro"})
-//    public String muro(ModelMap modelo) {
-//        List<Post> listaPost = postRepositorio.mostrarUltimosPost();
-//        modelo.addAttribute("listapost", listaPost);
-//        return "muro.html";
-//    }
-//    public String post_Nuevo(ModelMap modelo,MultipartFile archivo,@RequestParam String titulo, @RequestParam String descripcion, @RequestParam Categoria categoria, @RequestParam String idPersona)throws ErrorServicio{
-//        try{
-//        postServicio.nuevoPost(titulo,descripcion,idPersona,archivo,categoria);
-//        } catch (ErrorServicio ex){
-//        modelo.put("error", ex.getMessage());
-//        modelo.put("titulo", titulo);
-//        modelo.put("descripcion",descripcion);
-//        modelo.put("idPersona", idPersona);
-//        modelo.put("categoria", categoria);
-//        
-//        }
-//        
-//        modelo.put("titulo","Pa que posteas eso pendejo");
-//        modelo.put("descripcion","queweaconlavide");
-//        return "nuevoPost.html";
-//    }
 }

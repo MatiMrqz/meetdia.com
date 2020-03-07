@@ -8,6 +8,7 @@
    /*background-color: white;
   background-color: rgba(196, 222, 228, 0.877);*/
   background-size: cover;
+  background-image: url(/images/fondo.jpg);
 }
 
 
@@ -108,7 +109,7 @@ overflow: hidden;
   overflow: hidden;
   margin: 20px;
   text-align: center;
-  background-color: rgba(248, 243, 164, 0.8);
+  background-color: #9acd32ba;
 }
 
 
